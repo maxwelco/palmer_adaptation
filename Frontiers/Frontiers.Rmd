@@ -40,7 +40,7 @@ affiliation:
     department: Department of Agronomy
     institution: Western Illinois University
     city: Macomb
-    state: Illnois # only USA, Australia, Canada
+    state: Illinois # only USA, Australia, Canada
     country: United States
 output: rticles::frontiers_article
 csl: frontiers.csl
@@ -54,11 +54,10 @@ library(tidyverse)
 
 \begin{abstract}
 
-Abstract length and content varies depending on article type. Refer to 
-\url{http://www.frontiersin.org/about/AuthorGuidelines} for abstract requirement
-and length according to article type.
+Palmer amaranth (*Amaranthus palmeri* S. Watson) is the most troublesome weed species in the Southern United States cropping systems. 
 
-%All article types: you may provide up to 8 keywords; at least 5 are mandatory.
+
+
 \tiny
  \keyFont{ \section{Keywords:} Evolution Flowering Management Pigweed Weed} 
 
@@ -68,7 +67,7 @@ and length according to article type.
 # Introduction {-}
 Palmer amaranth (*Amaranthus palmeri* S. Watson) is currently ranked as one of the most economically detrimental weed species to cropping systems in the United States [@vanwychen2020]. Unmanaged Palmer amaranth plants compete for water, light, and nutrients, which can drastically impact crop yields [@berger2015]. For example, Palmer amaranth has been documented to reduce up to 91%, 68%, and 54% corn [@massinga2001], soybean [@klingaman1994], and cotton [@morgan2001] yields, respectively. Moreover, Palmer amaranth has shown a remarkable capacity to evolve resistance to herbicides. To date, Palmer amaranth has evolved resistance to eight herbicide sites of action [@heap2021], increasing the weed management complexity [@lindsay2017]. Thus, Palmer amaranth poses an economical and environmental risk to sustainable agriculture.
 
-Palmer amaranth is a fast growing summer annual forb indigenous to the Sonoran Desert [@sauer1957]. The species would eventually emerge as a threat to US agriculture in the 1990s. Palmer amaranth weediness is likely a result of human-assisted selection in combination with plant biology. Farm mechanization, adoption of conservation agriculture (e.g., no-till), and reliance on herbicides for weed management are the main human-mediated selection of Palmer amaranth into cropping systems [@ward2013]. On the other hand, Palmer amaranth is a prolific seed producer with a C4 photosynthetic apparatus [@wang1992]. With a dioecy nature, Palmer amaranth male and female plants are obligate outcrosser species, increasing the chances of exchanging adaptive traits among plants [@oliveira2018]. Also, Palmer amaranth small seed size (e.g, 1 mm) tend to thrive in no-tillage systems [@price2011], and spread across locations through farm equipment [@sauer1972], manure [@hartzler2016], animals [@farmer2017]. The dispersal capacity of Palmer amaranth makes the species one of the most successful cases of weed adaptation to current cropping systems. 
+Palmer amaranth is a fast growing summer annual forb indigenous to the Sonoran Desert [@sauer1957]. The species would eventually emerge as a threat to US agriculture in the 1990s. Palmer amaranth weediness is likely a result of human-assisted selection in combination with plant biology. Farm mechanization, adoption of conservation agriculture (e.g., no-till), and reliance on herbicides for weed management are the main human-mediated selection of Palmer amaranth into cropping systems [@ward2013]. On the other hand, Palmer amaranth is a prolific seed producer with a C4 photosynthetic apparatus [@wang1992]. With a dioecy nature, Palmer amaranth male and female plants are obligate outcrosser species, increasing the chances of exchanging adaptive traits among plants [@jhala2021]. Also, Palmer amaranth small seed size (e.g, 1 mm) tend to thrive in no-tillage systems [@price2011], and spread across locations through farm equipment [@sauer1972], manure [@hartzler2016], animals [@farmer2017]. The dispersal capacity of Palmer amaranth makes the species one of the most successful cases of weed adaptation to current cropping systems. 
 
 Light and temperature are the main environment requirements for Palmer amaranth successful grow and development [@jha2010]. Palmer amaranth is reported with an extended germination period [@ward2013]. Germination of Palmer amaranth was triggered by 18 C soil temperature at 5 cm depth [@keeley1987], and optimal germination and biomass production occurred at 35/30 C day and night temperatures [@guo2003]. In addition, Palmer amaranth establishment is human-mediated by tillage timings and preemergence-applied herbicides [@chahal2021], which can result in weed germination shifts [@sbatella2010]. Water has not shown to limit Palmer amaranth fitness. Under continuous water stress, Palmer amaranth survived and produced at least 14000 seeds plant-1 [@chahal2018]. Seeds from Palmer amaranth growing with limited water conditions were heavier, less dormant, and prompt for germination [@matzrafi2021]. Growing conditions and management practices also influence Palmer amaranth sex dimorphism and flowering pattern [@korres2017; @rumpa2019]. Therefore, Palmer amaranth has shown plasticity to evolve and fast adapt under selection pressure. Palmer amaranth invasion/adaptation into new habitats is likely to increase with the global temperature warming. Currently, it is estimated that the greatest climatic risk of Palmer amaranth establishment are agronomic crops in Australia and Sub-Sahara Africa [@kistner2018]. Temperature is a key factor limiting Palmer amaranth expansion to cooler geographies [@briscoerunquist2019]; however, under future climate change Palmer amaranth is likely to expand northward into Canada and Northern Europe [@kistner2018; @briscoerunquist2019].  
 
@@ -76,7 +75,7 @@ Palmer amaranth is already found in agronomic crops of South America [@larran201
 
 In the southeastern US, early growing Palmer amaranth is well known to have a higher impact on cotton yields compared to late established plants [@macrae2013]. In the northern states, Palmer amaranth impact on the agroecosystem is recent. Studies investigating Palmer amaranth in those locations are limited due to the plant classification as noxious weed species in some northern states [@yu2021]. Nonetheless, the continuous Palmer amaranth dispersal and potential establishment across the northern United States is concerning and warrants investigations on species morphology in such environments. Understanding Palmer amaranth biology and growing strategies under different agroecosystems can enhance our knowledge on species adaptation and management practices. It can also aid in designing proactive and ecological tactics to limit the species range expansion, reduce its negative impact, and developing resilient and sustainable farming systems [@maclaren2020]. Therefore, the objective of this study was to investigate the flowering pattern, gender, biomass production, and height of Palmer amaranth cohorts growing under corn, soybean and bareground across five locations in the United States Midwest.  
 
-# Results {-}
+# Material and Methods {-}
 
 <!-- Comments should be HTML-style comments -->
 
@@ -129,7 +128,7 @@ Plants had to be harvested at flowering because Palmer amaranth is neither endem
 
 ## Statistical analyses {-}  
 
-The statistical analyses were performed using R statistical software version 4.0.1. 
+The statistical analyses were performed using R statistical software version 4.0.1. Data analyses are stored at Zenodo [@oliveira2021b].
 
 Analyses of Palmer amaranth height and biomass were performed with a linear mixed model using *lmer* function from "lme4" package [@bates2015]. Plant height and biomass were log transformed to meet model assumption of normality. In the model, crop (bareground, corn, soybean) was the fixed effect and year nested with location the random effects. Analysis of variance was performed with *anova* function from "car" package [@fox2018]. Marginal means and compact letter display were estimated with *emmeans* and *cld* from packages "emmeans" and "multcomp" [@hothorn2008].  
 
@@ -138,7 +137,7 @@ The Palmer amaranth flowering timing was estimated as cumulative flowering acros
 $$Y(x) = 0 + (d-0) exp (-exp(b(log(x)-e)))$$
 
 
-In this model, *Y* is the Palmer amaranth cumulative flowering, *d* is the upper limit (set to 100), and *e* is the XXX, and *x* day of year (doy). 
+In this model, *Y* is the Palmer amaranth cumulative flowering, *d* is the upper limit (set to 100), and *e* is the inflection point, and *x* day of year (doy). 
 
 The doy for 10, 50, and 90% Palmer amaranth cumulative flowering were determined using the *ED* function of drc package. Also, the 10, 50, and 90% Palmer amaranth cumulative flowering were compared among crops and cohorts using the *EDcomp* function of drc package. The EDcomp function compares the ratio of cumulative flowering using t-statistics, where P-value < 0.05 indicates that we fail to reject the null hypothesis.  
 
@@ -203,7 +202,7 @@ knitr::include_graphics("../data analysis/figures/Figure 5.png")
 
 The model accuracy evaluation accuracy in the 20% test dataset was 0.62 with a cutoff value for female and male plants of 0.43. The model classification showed a precision of 0.64, recall of 0.66, and a F means score of 0.65. In addition, the area under the curve was 0.64.  
 
-# Discussion {-}  
+# Discussion {-}
 
 Our study showed that Palmer amaranth biomass, height, flowering pattern and gender varied within agroecossystems and cohort timings.  In general, first cohort of Palmer amaranth plants were heavier and taller when compared to the second cohort. At first cohort, resources (e.g., soil nutrients) and conditions (e.g., light) were more timely available for the species. High biomass and taller Palmer amaranth plants are likely a weed strategy to compete for light in between crop rows in absence of canopy. In such conditions, Palmer amaranth showed an extraordinary plasticity to adapt upon the agroecosystem. This is evident when comparing Palmer amaranth canopy shape, and its extended flowering pattern when growing into corn compared to soybean. The Palmer amaranth competition strategy was to mimic the crop grow and development (Figure 6). These results suggests that Palmer amaranth can fast evolve life-history traits to adapt into cropping systems and cultural practices, which was also showed in a study varying nitrogen fertilization [@bravo2018]. Our results highlight the Palmer amaranth as a threat to field crops as breeding more competitive crop varieties is likely to select more competitive biotypes [@bravo2017].  
 
@@ -219,7 +218,7 @@ An ecological approach to reduce seed production in Palmer amaranth is understan
 
 The mechanisms of sex-determination in plant species is intriguing and arouse the curiosity of many scientists, including Charles Darwin [@darwin1888]. In our study, the gender model performance was decent (AIC 0.64) considering the biology of plant flowering. A 1:1 male and female sex ratio is a general evolutionary stable strategy for plant species perpetuation [@fisher1930]. However, a slight deviation from 1:1 sex ratio might occur in some dioecious species. For example, the dioecious *Halophila stipulacea* is a female-biased plant in its native habitat, but the naturalized *H. stipulacea* have a 1:1 ratio [@nguyen2018]. Naturalized of *H. stipulacea* reduced female-male ratio to expand into its non-native habitat [@nguyen2018]. Also, biotic and/or abiotic stress can influence plant sex determination. Palmer amaranth  male-to-female ratio was greater under high plant densities [@korres2017a] and after herbicide application [@rumpa2019]. Our model estimated that late flowering, heavier and taller Palmer amaranth plants deviated from 1:1 ratio in favor to female plants. It was reported that female Palmer amaranth plants invested more in height, stem and biomass while male invested more in leaf area and leaf dry weight under nutrient deficiency [@korres2017]. Our model also estimated more female plants in soybean and bareground compared to corn, which might linked to plant competition strategy in each agroecossystem. Our results showed the influence of life-history and ecological traits on sexual dimorphism in Palmer amaranth. Sexual dimorphism is documented in other dioecious species [@barrett2013]. For example, stronger female plant competition and greater male tolerance to herbivory was reported in *Spinacia oleracea* [@perez-llorca2019]. Research on candidate genes for sex determination in *Amaranthus* species are currently underway but it is far to complete [@montgomery2021; @montgomery2019]. Further studies are also needed to understand the ecological basis of Palmer amaranth flowering, including the plant behavior under climate change.  
 
-Our study demonstrated the short-term Palmer amaranth plasticity to grow and develop into cropping-systems. Is likely that Palmer amaranth range will continue to expanding to new geographies. Therefore, preventive management is a priority to minimizing Palmer amaranth dispersal. Reactive management should focus on early-season management programs, which would have a large negative effect on Palmer amaranth growth and development. Tactics that promote early-season crop advantage against Palmer amaranth, including early crop planting, crop rotation [@oliveira2021a], plant width, preemergence applied herbicide [@sanctis2021], and crop residue (e.g. cover crops) would minimize the negative impact of Palmer amaranth in agroecossystems. The aggressiveness and differential Palmer amaranth adaptation to agroecosystem is striking and require national efforts to minimize the species impact on economy and sustainability.
+Our study demonstrated the short-term Palmer amaranth plasticity to grow and develop into cropping-systems. Is likely that Palmer amaranth range will continue to expanding into new geographies. Therefore, preventive management is a priority to minimizing Palmer amaranth dispersal. Reactive management should focus on early-season management programs, which would have a large negative effect on Palmer amaranth growth and development. Tactics that promote early-season crop advantage against Palmer amaranth, including early crop planting, crop rotation [@oliveira2021a], plant width, preemergence applied herbicide [@sanctis2021], and crop residue (e.g. cover crops) would minimize the negative impact of Palmer amaranth in agroecossystems. The aggressiveness and differential Palmer amaranth adaptation to agroecosystem is striking and require national efforts to minimize the species impact on economy and sustainability.
 
 
 
@@ -276,18 +275,12 @@ should not be listed as authors, but they should be acknowledged.
 RW and MO: designed the experiments; AJ, CP, MB, MO, and SS: conducted the experiments; MO: analyzed the data and wrote the manuscript; AJ, CP, MB, MO, SS, and RW: conceptualized the research. All authors reviewed the manuscript.  
 
 
-# Acknowledgments
+# Acknowledgments {-}
 
 Funding: This work received no specific grant from any funding agency, commercial, or not-for-profit sectors
 
-# Supplemental Data 
 
-Supplementary Material should be uploaded separately on submission, if there are
-Supplementary Figures, please include the caption in the same file as the
-figure. LaTeX Supplementary Material templates can be found in the Frontiers
-LaTeX folder
-
-# References
+# References {-}
 
 A Frontier article expect the reference list to be included in this section.
 To make that happens, the below syntax can be used. This [feature is from Pandoc citeproc](https://pandoc.org/MANUAL.html#placement-of-the-bibliography) which is used with `frontier_article()` to handle the bibliography
@@ -295,7 +288,7 @@ To make that happens, the below syntax can be used. This [feature is from Pandoc
 ::: {#refs}
 :::
 
-# Figures
+# Figures {-}
 
 ```{r, Figure-1, ref.label = "fig1", echo = FALSE, message = FALSE, fig.height=3, fig.width=6, fig.align='center', fig.cap='Mean average temperature (C) and total montly precipitation (mm) at Arlington, WI, Clay Center, NE, Grant, NE, Lincoln, NE and Macomb, IL', out.width = "160mm", out.height = "100mm"}
 # You can also refer to code chunks from above to place figures at the bottom.
@@ -307,7 +300,7 @@ To make that happens, the below syntax can be used. This [feature is from Pandoc
 ```
 
 
-```{r, Figure-3, ref.label = "fig3", echo = FALSE, message = FALSE, fig.height=9, fig.width=4, fig.align='center', fig.cap='Palmer amaranth biomass (A) and height (B) growing in corn, bareground, and soybean across Arlington, WI, Clay Center, NE, Grant, NE, Lincoln, NE and Macomb, IL', out.width = "150mm", out.height = "90mm"}
+```{r, Figure-3, ref.label = "fig3", echo = FALSE, message = FALSE, fig.height=9, fig.width=4, fig.align='center', fig.cap='Palmer amaranth biomass (A) and height (B) growing in corn, bareground, and soybean nested across Arlington, WI, Clay Center, NE, Grant, NE, Lincoln, NE and Macomb, IL', out.width = "150mm", out.height = "90mm"}
 # You can also refer to code chunks from above to place figures at the bottom.
 ```
 
@@ -322,7 +315,7 @@ To make that happens, the below syntax can be used. This [feature is from Pandoc
 ```
 
 
-```{r, Figure-6, ref.label = "fig6", echo = FALSE, message = FALSE, fig.height=9, fig.width=4, fig.align='center', fig.cap='MCO (180 cm) holding harvested Palmer amaranth plants at 40 days after first transplant (1st cohort, A) and 33 days after second transplant (2nd cohort, B). From left to right, Palmer amaranth growing in bareground, soybean and corn in Arlington, Wisconsin', out.width = "150mm", out.height = "90mm"}
+```{r, Figure-6, ref.label = "fig6", echo = FALSE, message = FALSE, fig.height=9, fig.width=4, fig.align='center', fig.cap='MCO (180 cm) holds harvested Palmer amaranth plants at 40 days after first cohort transplanting (A) and 33 days after second cohort transplanting (B). From left to right, Palmer amaranth growing in bareground, soybean and corn in Arlington, Wisconsin', out.width = "150mm", out.height = "90mm"}
 # You can also refer to code chunks from above to place figures at the bottom.
 ```
 

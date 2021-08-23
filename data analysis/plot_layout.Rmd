@@ -1,0 +1,175 @@
+---
+title: "layout"
+author: "Maxwel Coura Oliveira"
+date: "8/16/2021"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+library(ggimage)
+library(ggtext)
+```
+
+
+```{r}
+read_csv("../data/layout.csv") %>% 
+  janitor::row_to_names(row_number = 1) %>% 
+  mutate(distance = as.double(distance)) %>% 
+  mutate(emoji = case_when(
+    crop == "corn" ~ "https://img.icons8.com/color/48/000000/corn.png",
+    crop == "soybean" ~ "https://img.icons8.com/color/48/000000/soy.png",
+    TRUE ~ NA_character_)) %>% 
+  mutate(weed = "https://hotemoji.com/images/emoji/0/1gqjxj81p5mvj0.png") -> layout
+```
+
+
+
+```{r}
+layout %>% 
+  ggplot(aes(x = row, y = distance)) +
+  facet_grid(~crop) +
+#  geom_point() +
+#  scale_x_discrete(limits = c(-0.5, 4.5)) +
+  geom_image(data = layout,
+               aes(image=weed)) +
+  geom_image(data = layout %>% filter(crop == "corn"),
+               aes(x = 0.5, image=emoji)) +
+  geom_image(data = layout %>% filter(crop == "corn"),
+               aes(x = 1.5, image=emoji)) +
+  geom_image(data = layout %>% filter(crop == "corn"),
+               aes(x = 2.5, image=emoji)) +
+  geom_image(data = layout %>% filter(crop == "corn"),
+               aes(x = 3.5, image=emoji)) +
+  geom_image(data = layout %>% filter(crop == "corn"),
+               aes(x = 4.5, image=emoji)) +
+  labs(x= NULL, y = NULL) +
+  theme_test() +
+  theme(axis.ticks = element_blank(),
+        axis.text = element_blank(),
+        strip.text = element_markdown(size = 18),
+        panel.background = element_rect(fill = "#f7e4d7")) -> fig1
+```
+
+```{r}
+library(ggimage)
+fig1 +
+  geom_image(data = layout %>% filter(crop == "soybean"),
+               aes(x = 0.5, image=emoji)) +
+  geom_image(data = layout %>% filter(crop == "soybean"),
+               aes(x = 1.5, image=emoji)) +
+  geom_image(data = layout %>% filter(crop == "soybean"),
+               aes(x = 2.5, image=emoji)) +
+  geom_image(data = layout %>% filter(crop == "soybean"),
+               aes(x = 3.5, image=emoji)) +
+  geom_image(data = layout %>% filter(crop == "soybean"),
+               aes(x = 4.5, image=emoji)) -> fig2
+```
+
+```{r}
+palmer <- tibble(crop = "bareground")
+corn <- tibble(crop = "corn")
+soybean <- tibble(crop = "soybean")
+```
+
+
+```{r}
+fig2 +
+  geom_text(data = palmer, aes(x = 2.7, y = 270), size = 2, hjust = 0, 
+            fontface = "italic",
+            label = "24 Palmer amaranth plants \nwere placed 76.2 cm \nat the same distance") +
+  geom_text(data = palmer, aes(x = 2.3, y = 228), size = 2,
+            label = "76.2 cm", fontface = "bold") +
+  geom_text(data = palmer, aes(x = 2.5, y = 390), size = 2,
+            label = "Palmer amaranth \nplants", fontface = "bold") +
+  geom_text(data = corn, aes(x = 2.5, y = 400), size = 2,
+            label = "Corn plants", fontface = "bold") +
+  geom_text(data = soybean, aes(x = 2.5, y = 400), size = 2,
+            label = "Soybean plants", fontface = "bold") -> fig3
+
+#ggsave("figures/layout.png", height = 4, width = 9)
+```
+
+
+```{r}
+fig3 +
+  geom_segment(data = palmer, mapping = aes(x = 2.1, y = 264, 
+                                            xend = 2.85, yend = 230),
+               linetype = "dotted") +
+  geom_segment(data = palmer, mapping = aes(x = 2.1, y = 188, 
+                                            xend = 2.85, yend = 228),
+               linetype = "dotted") +
+  geom_segment(data = palmer, mapping = aes(x = 2, y = 250, 
+                                            xend = 2, yend = 198),
+               linetype = "dotted") -> fig4
+
+#ggsave("figures/layout.png", height = 4, width = 9)
+```
+
+```{r}
+fig4 +
+  geom_curve(data = palmer, aes(x = 2.5, y = 405, 
+                               xend = 2.1, yend = 420),
+             arrow = arrow(length = unit(0.07, "inch")), 
+               size = 0.4, curvature = 0.3) +
+  geom_curve(data = palmer, aes(x = 2.5, y = 375, 
+                               xend = 2.85, yend = 375),
+             arrow = arrow(length = unit(0.07, "inch")), 
+               size = 0.4, curvature = 0.3) +
+  geom_curve(data = corn, aes(x = 2.3, y = 405, 
+                               xend = 2.4, yend = 420),
+             arrow = arrow(length = unit(0.07, "inch")), 
+               size = 0.4, curvature = -0.3) +
+  geom_curve(data = corn, aes(x = 2.7, y = 395, 
+                               xend = 2.6, yend = 380),
+             arrow = arrow(length = unit(0.07, "inch")), 
+               size = 0.4, curvature = -0.3) + 
+  geom_curve(data = soybean, aes(x = 2.3, y = 405, 
+                               xend = 2.4, yend = 420),
+             arrow = arrow(length = unit(0.07, "inch")), 
+               size = 0.4, curvature = -0.3) +
+  geom_curve(data = soybean, aes(x = 2.7, y = 395, 
+                               xend = 2.6, yend = 380),
+             arrow = arrow(length = unit(0.07, "inch")), 
+               size = 0.4, curvature = -0.3) 
+
+ggsave("figures/layout.png", height = 4, width = 9)
+```
+
+
+
+
+```{r}
+library(png)
+library(ggpubr)
+```
+
+
+```{r}
+june <- png::readPNG("figures/image.png")
+july <- png::readPNG("figures/july.png")
+```
+
+
+```{r}
+# Plot with background image
+ggplot() +
+ background_image(june) -> junef
+
+ggplot() +
+ background_image(july) -> julyf
+```
+
+
+```{r}
+library(patchwork)
+```
+
+```{r}
+junef + julyf +
+  plot_annotation(tag_levels = 'A') & 
+  theme(plot.tag = element_text(size = 30, hjust = 0, vjust = 0))
+
+ggsave("figures/Figure 6.png", width = 7)
+```
+

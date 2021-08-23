@@ -1,0 +1,585 @@
+---
+title: "final_analysis"
+author: "Maxwel Coura Oliveira"
+date: "7/16/2021"
+output: html_document
+---
+
+
+```{r}
+library(tidyverse)
+library(lubridate)
+library(drc)
+library(broom)
+library(tidytext)
+library(ggthemes)
+library(ggtext)
+library(patchwork)
+```
+
+```{r}
+data <- read_csv("../data/data2.csv")
+```
+
+###--------------------------
+
+```{r}
+data %>% 
+  janitor::clean_names() %>% 
+  filter(location != "grant") %>% 
+  mutate(location = str_replace(location, "havelock", "lincoln")) %>% 
+  mutate(harvest = case_when(
+    location == "clay center" & doyh == 169 ~ "8/18/2018",
+    TRUE ~ harvest
+  )) -> data1
+```
+
+
+
+```{r}
+data1 %>% 
+  rename(month = planting_4,
+         planting = planting_9) %>% 
+  mutate(planting = mdy(planting),
+         harvest = mdy(harvest),
+         doyp = yday(planting),
+         doyh = yday(harvest)) %>% 
+  mutate_if(is_character, as_factor) %>% 
+  mutate(crop = fct_recode(crop, 
+                           "bareground" = "fallow")) -> data2
+```
+
+```{r}
+data %>% 
+  filter(location == "grant" & planting...4 == "July")
+```
+
+
+
+
+```{r}
+data2 %>% 
+  mutate(harvest = as.character(harvest)) %>% 
+  mutate(harvest = str_replace(harvest, "2018", "2019"),
+         harvest = ymd(harvest)) %>% 
+  filter(!is.na(harvest)) %>% 
+  dplyr::select(location, month, crop, harvest) %>% 
+  group_by(month, crop) %>% 
+  count(harvest, name = "harvest_day") -> harvest
+```
+
+
+```{r}
+data2 %>% 
+  filter(!is.na(harvest)) %>% 
+  dplyr::select(location, month, crop, harvest) %>% 
+  group_by(month, crop) %>% 
+  count(month, crop, name = "total") -> total
+```
+
+```{r}
+total %>% 
+  left_join(harvest) %>% 
+  mutate(prop = harvest_day / total) %>% 
+  mutate(lag = lag(prop)) %>% 
+  mutate(prob = cumsum(prop)) %>% 
+  mutate(doyh = yday(harvest)) -> cum_sum
+```
+
+
+
+```{r}
+data2 %>% 
+  mutate(harvest = str_replace(harvest, "2018", "2019"),
+         harvest = ymd(harvest)) %>% 
+  filter(!is.na(harvest)) %>% 
+  ungroup() %>% 
+  left_join(cum_sum) %>% 
+  rename(harvest_com = harvest) %>% 
+  dplyr::select(-lag) -> data3
+```
+
+# June
+
+```{r}
+data3 %>% 
+  filter(month == "June") -> month_jun 
+model3 <- drm(prob*100 ~ doyh, crop, fct = W1.3(fixed=c(NA,100,NA)), data = month_jun)
+
+plot(model3, col = c(1,2,3), type = "average", ylab = "Cumulative flowering (%)",
+     xlab = "Day of the year")
+```
+
+
+
+
+
+```{r Control prediction, include=FALSE}
+newdata <- expand.grid(doyh = exp(seq(log(150), log(270), length=280)))
+
+newdata1 <- data.frame(crop = "corn", newdata)
+newdata2 <- data.frame(crop = "soybean", newdata)
+newdata3 <- data.frame(crop = "bareground", newdata)
+
+nd=rbind(newdata1, newdata2, newdata3)
+
+pm <- predict(model3, newdata=nd, interval="confidence")
+
+nd$pm <- pm[,1] 
+nd$pmin <- pm[,2] 
+nd$pmax <- pm[,3] 
+```
+
+
+
+```{r}
+ggplot(month_jun, 
+       aes(x = doyh, y = prob*100, 
+           color=crop,
+           shape = crop,
+           fill = crop)) + 
+  geom_line(data=nd, aes(x=doyh, y = pm, 
+                         color = crop,
+                         shape = crop,
+                         fill = crop), size=1) +
+  geom_point(alpha = 0.2, aes(fill = crop, shape = crop, color = crop)) +
+  geom_ribbon(data=nd, aes(x=doyh, y = pm, 
+                           ymin = pmin, 
+                           ymax = pmax, fill=crop), 
+              color = NA, alpha = 0.1, show.legend = FALSE) +
+  labs(x = "Day of year", y = "% cumulative flowering") +
+  coord_trans(x="log") +
+  scale_y_continuous(limits = c(0, 100), breaks = c(0,25,50,75,100)) +
+  scale_x_continuous(limits = c(153, 270), 
+                     breaks = seq(150, 275, 25)) +
+  annotate("text", x = 165, y = 99, fontface = "bold",
+           family = "roboto", alpha = 1, size = 10,
+           label = "First cohort", color = "#dadfe1") +
+  theme_test(base_family = "roboto") +
+#  scale_fill_viridis_d(option = "D") +
+#  scale_color_viridis_d(option = "D") +
+  scale_color_manual(name = "", 
+                    values = c("#28bbecff",
+                               "#30123bFF", 
+                               "#fb832d"),
+                     labels = c("soybean",
+                                "corn", 
+                                "bareground")) +
+  scale_fill_manual(name = "", 
+                    values = c("#28bbecff",
+                               "#30123bFF", 
+                               "#fb832d"),
+                     labels = c("soybean",
+                                "corn", 
+                                "bareground")) +
+  scale_shape_manual(name = "", values = c(1,2,3), 
+                     labels = c("soybean", "corn", "bareground")) +
+  theme(legend.position = c(0.80, 0.225),
+        axis.title = element_markdown(size = 30, color = "#333333"),
+        axis.text = element_markdown(size = 25),
+        legend.title = element_blank(),
+        legend.text = element_markdown(size = 20),
+        legend.background = element_rect(fill = NA)) -> curv1
+#ggsave("figures/fig.png")
+```
+
+
+
+```{r}
+library(scales)
+show_col(viridis_pal(option = "C")(12)) 
+show_col(wsj_pal()(9))
+```
+
+
+```{r}
+#broom::tidy(model_arl)
+summary(model3)
+```
+
+```{r}
+ed_values3 <- ED(model3, c(10, 50, 90), interval = "delta", type = "absolute")
+```
+
+
+
+```{r}
+ed_values3 %>% 
+  as.data.frame() %>% 
+  rownames_to_column(., var = "name") %>% 
+  as_tibble() %>% 
+  separate(name, c("param", "crop", "ED"), sep = ":") %>% 
+  janitor::clean_names() %>% 
+  mutate_if(is_character, as_factor) -> ed_values3
+```
+
+
+
+
+
+
+```{r}
+data3 %>% 
+  filter(month == "July") -> month_jul 
+model4 <- drm(prob*100 ~ doyh, crop, fct = W1.3(fixed=c(NA,100,NA)), data = month_jul)
+
+plot(model4, col = c(1,2,3), type = "average", ylab = "Cumulative flowering (%)",
+     xlab = "Day of the year")
+```
+
+
+
+
+```{r include=FALSE}
+newdata <- expand.grid(doyh = exp(seq(log(183), log(270), length=270)))
+
+newdata1 <- data.frame(crop = "corn", newdata)
+newdata2 <- data.frame(crop = "soybean", newdata)
+newdata3 <- data.frame(crop = "bareground", newdata)
+
+nd=rbind(newdata1, newdata2, newdata3)
+
+pm <- predict(model4, newdata=nd, interval="confidence")
+
+nd$pm <- pm[,1] 
+nd$pmin <- pm[,2] 
+nd$pmax <- pm[,3] 
+```
+
+
+```{r}
+ggplot(month_jul, 
+       aes(x = doyh, y = prob*100, color=crop)) + 
+  geom_line(data=nd, aes(x=doyh, y = pm, color=crop), size=1) +
+  geom_point(alpha = 0.2, aes(shape = gender)) +
+  geom_ribbon(data=nd, aes(x=doyh, y = pm,
+                           ymin = pmin, 
+                           ymax = pmax, fill=crop), 
+              color = NA, alpha = 0.1) +
+  coord_trans(x="log") +
+  scale_x_continuous(limits = c(153, 270), 
+                     breaks = seq(150, 275, 25)) +
+  scale_y_continuous(limits = c(0, 100), breaks = c(0,25,50,75,100)) +
+  labs(x = "Day of year", y = "% cumulative flowering",
+       title = NULL) +
+  theme_test(base_family = "roboto") +
+  annotate("text", x = 170, y = 99, fontface = "bold",
+           family = "roboto", alpha = 1, size = 10,
+           label = "Second cohort", color = "#dadfe1") +
+  scale_color_manual(name = "", 
+                    values = c("#fb832d",
+                               "#30123bFF", 
+                               "#28bbecff"),
+                     labels = c("bareground",
+                                "corn", 
+                                "soybean")) +
+  scale_fill_manual(name = "", 
+                    values = c("#fb832d",
+                               "#30123bFF", 
+                               "#28bbecff"),
+                     labels = c("bareground",
+                                "corn", 
+                                "soybean")) +
+  scale_shape_manual(name = "", values = c(1,2,3), 
+                     labels = c("bareground", "corn", "soybean")) +
+  theme(legend.position = "none",
+        axis.title = element_markdown(size = 30, color = "#333333"),
+        axis.text = element_markdown(size = 25),
+        legend.text = element_markdown(size = 25)) -> curv2
+curv2
+ggsave("figures/fig.png")
+```
+
+
+
+```{r}
+#broom::tidy(model_arl)
+summary(model4)
+```
+
+```{r}
+ed_values4 <- ED(model4, c(10, 50, 90), interval = "delta", type = "absolute")
+```
+
+
+
+```{r}
+ed_values4 %>% 
+  as.data.frame() %>% 
+  rownames_to_column(., var = "name") %>% 
+  as_tibble() %>% 
+  separate(name, c("param", "crop", "ED"), sep = ":") %>% 
+  janitor::clean_names() %>% 
+  mutate_if(is_character, as_factor) -> ed_values4
+```
+
+
+
+```{r}
+ed_values3 %>% 
+  mutate(month = "First transplanting") -> ed_values3
+
+ed_values4 %>% 
+  mutate(month = "Second transplanting") %>% 
+  bind_rows(ed_values3) -> result3
+```
+
+
+
+```{r}
+label1 <- tibble(ed = "10% flowering", 
+                   x = 2.35, y = 156.5, label = "June 01")
+
+label2 <- tibble(ed = "10% flowering", 
+                   x = 2.5, y = 186.5, label = "July 01")
+```
+
+```{r}
+month <- tibble(ed = "90% flowering",
+                x = c(0.65, 0.65, 0.65, 0.65),
+                y = c(168, 197, 228.5, 259), 
+                label = c("June", "July", "August", "September"))
+```
+
+```{r}
+result3 %>% 
+  mutate(estimate = round(estimate, 1)) %>% 
+  filter(month == "First transplanting") %>% 
+  mutate(ed = case_when(
+    ed == "10" ~ "10% flowering",
+    ed == "50" ~ "50% flowering",
+    ed == "90" ~ "90% flowering",
+    TRUE ~ "ed")) %>% 
+  mutate(crop = fct_recode(crop,
+          "<b style='color:#30123bFF;'>corn</b>" = "corn",
+          "<b style='color:#fb832d;'>bareground</b>" = "bareground",
+          "<b style='color:#28bbecff;'>soybean</b>" = "soybean")) %>%  
+  ggplot(aes(x = crop, y = estimate)) +
+  coord_flip() +
+  labs(x = NULL, y = "Day of year") +
+  scale_y_continuous(limits = c(153, 275)) +
+   geom_rect(xmin= 0.5, 
+             xmax= 3.5,
+             ymin= 153, 
+             ymax= 183, 
+            fill = "#FFFFF0", alpha=0.05) +
+  geom_rect(xmin= 0.5, 
+            xmax= 3.5,
+            ymin= 183, 
+            ymax= 214, 
+            fill = "beige", alpha=0.05) +
+  geom_rect(xmin= 0.5, 
+            xmax= 3.5,
+            ymin= 214, 
+            ymax= 244, 
+            fill = "#F0FFF0", alpha=0.05) +
+  geom_rect(xmin= 0.5, 
+            xmax= 3.5,
+            ymin= 244, 
+            ymax= 274, 
+            fill = "#F8F8FF", alpha=0.5) +
+  geom_segment(aes(x = 0.5, xend = 3.5, y = 153, yend = 153), 
+             color = 1,
+             alpha = 0.5, color = "#333333") +
+  geom_text(data = month, aes(x = x, y = y), label = month$label,
+            size = 7, color = c("#8B8000", "#80461b", 
+                                "darkgreen", "blue")) +
+  geom_text(data = label1, 
+            aes(x = x, y = y), 
+            size = 5, hjust = 0, angle = 270,
+            label = label1$label, color = "#333333") +
+  theme_test(base_family = "roboto") +
+  theme(legend.position = "none",
+        axis.title = element_markdown(size = 30, color = "#333333"),
+        axis.text.x = element_markdown(size = 25),
+        axis.text.y = element_markdown(size = 25),
+        legend.title = element_blank(),
+        legend.text = element_markdown(size = 20),
+        plot.title = element_markdown()) -> jun1
+
+#ggsave("figures/june1.png")
+```
+
+```{r}
+library(ggrepel)
+jun1 +
+    geom_point(aes(color = ed), 
+             size = 2,
+             position = position_dodge2(width = 0.4)) +
+    geom_text_repel(aes(label = estimate, 
+                         x = crop, color = ed),
+                    size = 6,
+                    force_pull = 0,
+                    direction = "y",
+                    point.padding = NA,
+                    min.segment.length = 14,
+                    vjust = 0.5,
+                    position = position_dodge2(width = 0.4),
+                    seed = 455) +
+  scale_color_calc() +
+#  geom_curve(x = 2.85, y = 183,
+#             xend = 2.75, yend = 188,
+#             arrow = arrow(length = unit(0.07, "inch")), 
+#             color = "#004586",
+#             size = 0.4, curvature = -0.3) +
+  annotate("text", x = 2.7, y = 185, 
+           label = "10% flowering",
+           size = 6, color = "#004586",
+           fontface = "bold") + 
+#  geom_curve(x = 2, y = 197,
+#             xend = 1.9, yend = 203,
+#             arrow = arrow(length = unit(0.07, "inch")), 
+#             color = "#ff420e",
+#             size = 0.4, curvature = -0.3) +
+  annotate("text", x = 1.85, y = 215, 
+           label = "50% flowering",
+           size = 6, color = "#ff420e",
+           fontface = "bold") +
+#  geom_curve(x = 1.14, y = 256,
+#             xend = 1.0, yend = 260,
+#             arrow = arrow(length = unit(0.07, "inch")), 
+#             color = "#ffd320",
+#             size = 0.4, curvature = -0.3) +
+  annotate("text", x = 1.0, y = 225, 
+           label = "90% flowering",
+           size = 6, color = "#ffd320",
+           fontface = "bold") -> jun2
+
+#ggsave("figures/june1.png")
+```
+
+```{r}
+curv1 + wrap_elements(full =jun2) +
+  plot_layout(widths = c(1, 1.3)) -> fig1
+
+#ggsave("figures/fig1.png", width = 6, height = 3)
+```
+
+
+
+
+
+```{r}
+result3 %>% 
+  mutate(estimate = round(estimate, 1)) %>% 
+  filter(month == "Second transplanting") %>% 
+  mutate(ed = case_when(
+    ed == "10" ~ "10% flowering",
+    ed == "50" ~ "50% flowering",
+    ed == "90" ~ "90% flowering",
+    TRUE ~ "ed")) %>% 
+  mutate(crop = fct_recode(crop,
+          "<b style='color:#30123bFF;'>corn</b>" = "corn",
+          "<b style='color:#fb832d;'>bareground</b>" = "bareground",
+          "<b style='color:#28bbecff;'>soybean</b>" = "soybean")) %>%  
+  ggplot(aes(x = crop, y = estimate)) +
+  coord_flip() +
+  labs(x = NULL, y = "Day of year") +
+  scale_y_continuous(limits = c(153, 275)) +
+   geom_rect(xmin= 0.5, 
+             xmax= 3.5,
+             ymin= 153, 
+             ymax= 183, 
+            fill = "#FFFFF0", alpha=0.05) +
+  geom_rect(xmin= 0.5, 
+            xmax= 3.5,
+            ymin= 183, 
+            ymax= 214, 
+            fill = "beige", alpha=0.05) +
+  geom_rect(xmin= 0.5, 
+            xmax= 3.5,
+            ymin= 214, 
+            ymax= 244, 
+            fill = "#F0FFF0", alpha=0.05) +
+  geom_rect(xmin= 0.5, 
+            xmax= 3.5,
+            ymin= 244, 
+            ymax= 274, 
+            fill = "#F8F8FF", alpha=0.5) +
+  geom_segment(aes(x = 0.5, xend = 3.5, y = 183, yend = 183), 
+             color = "#333333",
+             alpha = 0.5) +
+  geom_text(data = month, aes(x = x, y = y), label = month$label,
+            size = 7, color = c("#8B8000", "#80461b", 
+                                "darkgreen", "blue")) +
+  geom_text(data = label2, 
+            aes(x = x, y = y), 
+            size = 5, hjust = 0, angle = 270,
+            label = label2$label, color = "#333333") +
+  theme_test(base_family = "roboto") +
+  theme(legend.position = "none",
+        axis.title = element_markdown(size = 30, color = "#333333"),
+        axis.text.x = element_markdown(size = 25),
+        axis.text.y = element_markdown(size = 25),
+        legend.title = element_blank(),
+        legend.text = element_markdown(size = 20)) -> jul1
+
+#ggsave("figures/june1.png")
+```
+
+
+```{r}
+jul1 +
+    geom_point(aes(color = ed), 
+             size = 2,
+             position = position_dodge2(width = 0.4)) +
+    geom_text_repel(aes(label = estimate, 
+                         x = crop, color = ed),
+                    size = 6,
+                    force_pull = 0,
+                    direction = "y",
+                    point.padding = NA,
+                    min.segment.length = 14,
+                    vjust = 0.5,
+                    position = position_dodge2(width = 0.4),
+                    seed = 455) +
+  scale_color_calc() -> jul2
+```
+
+
+
+
+
+
+
+
+
+
+```{r}
+curv2 + wrap_elements(full = jul2) +
+  plot_layout(widths = c(1, 1.3)) -> fig2
+
+#ggsave("figures/fig2.png", width = 6, height = 3)
+```
+
+
+```{r}
+wrap_elements(full = fig1) / wrap_elements(full = fig2) +
+  plot_annotation(tag_levels = 'A') & 
+  theme(plot.tag = element_text(size = 30, hjust = 0, vjust = 0))
+
+ggsave("figures/Figure 4.png", width = 6, height = 6)
+```
+
+
+
+```{r}
+library(scales)
+show_col(calc_pal()(5))
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

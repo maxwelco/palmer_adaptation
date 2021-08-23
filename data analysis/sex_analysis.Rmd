@@ -1,0 +1,210 @@
+---
+title: "sex"
+author: "Maxwel Coura Oliveira"
+date: "8/11/2021"
+output: html_document
+---
+
+
+
+
+
+```{r}
+library(emoGG)
+library(tidyverse)
+library(lubridate)
+library(tidymodels)
+library(yardstick)
+library(broom)       # for making model summary tidy
+library(visreg)      # for potting logodds and probability 
+library(margins)     # to calculate Average Marginal Effects
+library(rcompanion)  # to calculate pseudo R2
+library(ROCR) 
+#https://towardsdatascience.com/modelling-binary-logistic-regression-using-tidymodels-library-in-r-part-1-c1bdce0ac055
+#https://towardsdatascience.com/modelling-binary-logistic-regression-using-r-research-oriented-modelling-and-interpretation-f67b3a954101
+```
+
+
+
+```{r}
+read_csv("../data/data2.csv") %>% 
+#  filter(location != "grant") %>% 
+  mutate(location = str_replace(location, "havelock", "lincoln")) %>% 
+  mutate(harvest = case_when(
+    location == "clay center" & doyh == 169 ~ "8/18/2018",
+    TRUE ~ harvest
+  )) %>% 
+  janitor::clean_names() %>% 
+  rename(planting = planting_4,
+         planting_1 = planting_9) -> data1
+```
+
+
+```{r}
+data1 %>% 
+  rename(month = planting,
+         planting = planting_1) %>% 
+  mutate(planting = mdy(planting),
+         harvest = mdy(harvest),
+         doyp = yday(planting),
+         doyh = yday(harvest)) %>% 
+  mutate_if(is_character, as_factor) %>% 
+  filter(!is.na(gender)) %>% 
+#  filter(!is.na(weight)) %>% 
+  mutate(fem = as_factor(if_else(gender == "f", 1, 0))) %>% 
+  mutate(crop = fct_recode(crop, 
+                           "bareground" = "fallow")) %>% 
+  filter(location != "grant") %>% 
+  dplyr::select(fem, gender, location, year, month, crop, height, weight, doyh) -> data2
+  na.omit(data2) -> data2
+```
+
+```{r}
+data2 %>% 
+  distinct(location)
+```
+
+
+```{r}
+# Total number of rows in the data frame
+n <- nrow(data2)
+# Number of rows for the training set (80% of the dataset)
+n_train <- round(0.80 * n)
+# Create a vector of indices which is an 80% random sample
+set.seed(123)
+train_indices <- sample(1:n, n_train)
+# Subset the data frame to training indices only
+train <- data2[train_indices, ]
+# Exclude the training indices to create the test set
+test <- data2[-train_indices, ]
+```
+
+
+
+```{r}
+paste("train sample size: ", dim(train)[1])
+paste("test sample size: ", dim(test)[1])
+```
+
+
+```{r}
+library(recipes)
+recipe(fem ~ doyh + crop + height + weight, data = train) %>% 
+  recipes::step_dummy(all_nominal(), -all_outcomes()) -> recip1
+
+#preprocessing
+prepped_rec <- prep(recip1, verbose = TRUE, retain = TRUE )
+
+# new data set with juice
+juice <- juice(prepped_rec)
+
+# bake to see the preprocessed training data
+preproc_train <- recipes::bake(prepped_rec, new_data = NULL)
+glimpse(preproc_train)
+# bake to see the preprocessed testing data
+preproc_test <- recipes::bake(prepped_rec, new_data = test)
+glimpse(preproc_test)
+```
+
+
+```{r}
+#Fitting a binary logistic regression
+model_logi <- glm(fem ~ ., data = preproc_train, family = "binomial")
+#Model summary
+summary(model_logi)
+```
+
+
+
+```{r}
+# Pseudo R_squared values and Likelyhood ratio test
+rcompanion::nagelkerke(model_logi)
+```
+
+
+
+```{r}
+# Probabilities of female with doy
+visreg(model_logi, "doyh", scale="response", rug=2, gg=TRUE,
+       xlab="Day of year",
+       ylab="P(female)",
+       line = list(col="#333333"),
+       fill=list(fill= "green", alpha = 0.2),
+       points=list(size=1, col = "#333333", pch=1),
+       ylim = c(0,1)) -> doy_f
+```
+
+
+```{r}
+doy_f +
+  scale_y_continuous(limits = c(0, 1)) +
+  scale_x_continuous(limits = c(170, 270), breaks = seq(170, 270, 20)) +
+  theme_test() +
+  geom_emoji(aes(x = 220, y = 0.95), emoji = "2640") +
+  geom_emoji(aes(x = 220, y = 0.05), emoji = "2642") -> doyf
+
+#ggsave("figures/fig2.png")
+```
+
+
+```{r}
+# Probabilities of female with weight
+visreg(model_logi, "weight", scale="response", rug=2, gg = TRUE,
+       xlab=expression(paste("Weight (g plant "^"-1",")")),
+       ylab="P(female)",
+       line = list(col="#333333"),
+       fill=list(fill= "green", alpha = 0.2),
+       points=list(size=1, col = "#333333", pch=1),
+       ylim = c(0,1)) -> weight_f
+```
+```{r}
+weight_f +
+  scale_y_continuous(limits = c(0, 1)) +
+  theme_test() +
+  scale_x_continuous(limits = c(0, 1100), breaks = seq(0, 1100, 150)) +
+  geom_emoji(aes(x = 105, y = 0.95), emoji = "2640") +
+  geom_emoji(aes(x = 105, y = 0.05), emoji = "2642") -> weightf
+
+#ggsave("figures/fig1.png")
+```
+
+
+```{r}
+# Probabilities of female with weight
+visreg(model_logi, "height", scale="response", rug=2, gg = TRUE,
+       xlab=expression(paste("Height (cm plant "^"-1",")")),
+       ylab="P(female)",
+       line = list(col="#333333"),
+       fill=list(fill= "green", alpha = 0.2),
+       points=list(size=1, col = "#333333", pch=1),
+       ylim = c(0,1)) -> height_f
+height_f
+```
+
+
+
+
+```{r}
+height_f +
+  scale_y_continuous(limits = c(0, 1)) +
+  theme_test() +
+  geom_emoji(aes(x = 105, y = 0.95), emoji = "2640") +
+  geom_emoji(aes(x = 105, y = 0.05), emoji = "2642") -> heightf
+
+#ggsave("figures/fig.png")
+```
+
+
+```{r}
+library(patchwork)
+
+doyf + weightf + heightf +
+  plot_annotation(tag_levels = 'A') & 
+  theme(plot.tag = element_text(size = 10, hjust = 0, vjust = 0))
+
+ggsave("figures/Figure 5.png", width = 9, height = 3)
+```
+
+
+
+

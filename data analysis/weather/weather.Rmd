@@ -1,0 +1,260 @@
+---
+title: "weather"
+author: "Maxwel Coura Oliveira"
+date: "7/8/2021"
+output: html_document
+---
+
+```{r}
+library(tidyverse) # Data wrangling
+library(lubridate) # Dates operations
+library(daymetr)
+library(chirps)
+library(patchwork)
+library(ggtext)
+library(nasapower)
+library(vegan)
+```
+
+# Load data
+
+You can load your data with read_csv if you have it in a spreadsheet.
+
+```{r}
+# your data
+df_time <- tibble(ID = c('1','2','3','4','5'), 
+                  Site = c('Arlington','Macomb','Lincoln',
+                               'Clay Center', 'Grant'),
+                  # Both coordinates in decimal format
+                  latitude = c(43.18, 40.45, 40.85, 40.57, 40.8430),
+                  longitude = c(-89.20, -90.67, -96.62, -98.13, -101.72),
+                  Start = c('1988-01-01','1988-01-01','1988-01-01',
+                                '1988-01-01', '1988-01-01'),
+                  Early_planting = c("2018-06-01", "2018-06-01",
+                                     "2018-06-01",
+                                     "2018-06-01", "2018-06-01"),
+                  Late_planting = c("2018-06-01", "2018-06-01", "2018-06-01",
+                                    "2018-06-01", "2018-06-01"),
+                      End = c('2020-12-31','2020-12-31','2020-12-31',
+                              '2020-12-31', '2020-12-31'))
+
+df_time <- df_time %>% 
+  mutate_at(5:8, ymd) # as date
+```
+
+
+## Daymet 
+
+```{r function}
+source("weather_daymet.R")
+```
+
+
+
+```{r get_data}
+#dpp default = 0 - dpp = days prior start date
+
+df_daymet <- weather_daymet(input = df_time, dpp = 0) 
+```
+
+
+```{r}
+df_daymet %>% 
+  janitor::clean_names() %>% 
+  mutate(month_lab = month(date, label = TRUE)) -> adaptation_weather
+```
+
+
+```{r}
+adaptation_weather %>% 
+  filter(month %in% c(6, 7, 8, 9)) %>% 
+  mutate(year = as.character(year),
+         highlight = ifelse(year %in% c("2018", "2019"), TRUE, FALSE),
+         variable = if_else(highlight == TRUE, year, "NA")) -> adaptation_weather1
+```
+
+
+```{r}
+adaptation_weather1 %>% 
+  filter(year %in% c(2018, 2019)) %>% 
+  group_by(site, year, month) %>% 
+  summarise(prec = sum(pp), tmax = mean(tmax), tmin = mean(tmin), tmean = mean(tmean)) %>% 
+  mutate_if(is.double, ~round(., 1))
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```{r}
+adaptation_weather %>% 
+  filter(month %in% c(6, 7, 8, 9)) %>% 
+  mutate(year = as.character(year),
+         highlight = ifelse(year %in% c("2018", "2019"), TRUE, FALSE),
+         variable = if_else(highlight == TRUE, year, "NA")) %>% 
+  mutate(site = fct_recode(site, 
+                           "Arlington, WI" = "Arlington",
+                           "Clay Center, NE" = "Clay Center",
+                           "Grant, NE" = "Grant",
+                           "Lincoln, NE" = "Lincoln",
+                           "Macomb, IL" = "Macomb")) -> adaptation_weather1
+```
+
+```{r}
+adaptation_weather %>% 
+  filter(month %in% c(6, 7, 8, 9)) %>% 
+  group_by(month_lab, site) %>% 
+  summarise(tmean = mean(tmean))
+```
+
+
+
+
+```{r}
+text1 <- tibble(site = "Arlington, WI")
+text2 <- tibble(site = "Clay Center, NE")
+```
+
+ 
+```{r}
+adaptation_weather1 %>% 
+  ggplot(aes(x = month_lab, y = tmean)) +
+  geom_jitter(aes(color = variable), alpha = 0.05, shape = 0) +
+  scale_color_manual(values = c("red", "blue", "gray90")) +
+  facet_grid(~ site) +
+  geom_line(adaptation_weather1 %>% 
+               filter(year %in% c(2018)) %>% 
+               group_by(site, month_lab) %>% 
+               summarise(tmean = mean(tmean)),
+             mapping = aes(x = month_lab, y = tmean, group = 1), 
+             color = "red") +
+  geom_line(adaptation_weather1 %>% 
+               filter(year %in% c(2019)) %>% 
+               group_by(site, month_lab) %>% 
+               summarise(tmean = mean(tmean)),
+             mapping = aes(x = month_lab, y = tmean, group = 1), 
+             color = "blue") +
+  geom_point(adaptation_weather1 %>% 
+               filter(year %in% c(2018)) %>% 
+               group_by(site, month_lab) %>% 
+               summarise(tmean = mean(tmean)),
+             mapping = aes(x = month_lab, y = tmean), 
+             fill = "red", shape = 22, size = 3) +
+  geom_point(adaptation_weather1 %>% 
+               filter(year %in% c(2019)) %>% 
+               group_by(site, month_lab) %>% 
+               summarise(tmean = mean(tmean)),
+             mapping = aes(x = month_lab, y = tmean), 
+             fill = "blue", shape = 22, size = 3) +
+  geom_richtext(data = text1, aes(x = 2, y = 7), lineheight = 0.4, 
+            label = "Mean air temperature <br>in <b style='color:red;'>2018</b> and <b style='color:blue;'>2019</b>", size = 6, 
+            label.color = NA, fill = NA) +
+  geom_richtext(data = text2, aes(x = 2.2, y = 10), lineheight = 0.4, 
+            label = "30 years <br>daily mean <br>air temperature", size = 6, 
+             label.color = NA, fill = NA, color = "gray90") +
+  geom_curve(data = text2, 
+             x = 2, y = 13, 
+             xend = 2.5, yend = 16,
+             arrow = arrow(length = unit(0.07, "inch")), 
+             size = 0.4, curvature = -0.3, color = "gray90") + 
+  scale_y_continuous(limits = c(0, 32)) +
+  labs(x = NULL, y = "Temperature (C)") +
+  theme_test() +
+  theme(legend.position = "none",
+#        strip.text = element_markdown(size = 15, hjust = 0.5),
+#        axis.text.y = element_markdown(size = 25),
+#        axis.title = element_markdown(size = 27),
+#        axis.text.x = element_markdown(size = 25)#,
+#        legend.text = element_markdown(size = 25)
+        )  -> temp
+
+ggsave("weather.png", height = 3, width = 6)
+```
+
+```{r}
+text3 <- tibble(site = "Grant, NE")
+text4 <- tibble(site = "Lincoln, NE")
+```
+
+```{r}
+adaptation_weather %>% 
+  filter(month %in% c(6, 7, 8, 9)) %>% 
+  group_by(month_lab, site, year) %>% 
+  summarise(pp = sum(pp)) %>% 
+  mutate(year = as.character(year),
+         highlight = ifelse(year %in% c("2018", "2019"), TRUE, FALSE),
+         variable = if_else(highlight == TRUE, year, "NA")) %>% 
+  mutate(site = fct_recode(site, 
+                           "Arlington, WI" = "Arlington",
+                           "Clay Center, NE" = "Clay Center",
+                           "Grant, NE" = "Grant",
+                           "Lincoln, NE" = "Lincoln",
+                           "Macomb, IL" = "Macomb")) -> adaptation_pp
+```
+
+
+
+```{r message = FALSE, warning = FALSE}
+adaptation_pp %>% 
+ggplot(aes(x = month_lab, y = pp)) +
+  geom_bar(data = adaptation_pp %>% filter(year == c(2018, 2019)), 
+           mapping = aes(fill = year),
+           stat = "identity", position = "dodge", alpha = 1) +
+  geom_point(data = adaptation_pp %>% filter(year != c(2018, 2019)), 
+              position = position_jitter(seed = 1),
+              alpha = 0.2, color = "gray50", 
+              show.legend = FALSE) +
+  scale_fill_manual(values = c("red", "blue")) +
+  facet_grid(~ site) +
+  geom_richtext(data = text3, aes(x = 2.6, y = 330), lineheight = 0.4, 
+            label = "Monthly sum precipitation <br>in <b style='color:red;'>2018</b> and <b style='color:blue;'>2019</b>", size = 2, 
+            label.color = NA, fill = NA) +
+  geom_richtext(data = text4, aes(x = 3.6, y = 320), lineheight = 0.4, 
+            label = "30 years <br>monthly sum <br>precipitation", size = 2, 
+             label.color = NA, fill = NA, color = "gray90") +
+  geom_curve(data = text4, 
+             x = 2.6, y = 310, 
+             xend = 2.1, yend = 320,
+             arrow = arrow(length = unit(0.07, "inch")), 
+             size = 0.4, curvature = -0.3, color = "gray90") + 
+  labs(x = NULL, y = "Precipitation (mm)") +
+  theme_test() +
+  theme(legend.position = "none",
+#        strip.text = element_markdown(size = 28),
+#        axis.text.y = element_markdown(size = 25),
+#        axis.title = element_markdown(size = 27),
+#        axis.text.x = element_markdown(size = 25),
+#        legend.text = element_markdown(size = 25)
+  ) -> ppp
+
+```
+
+
+
+
+
+
+
+```{r}
+temp / ppp
+
+ggsave("Figure 1.png")
+```
+

@@ -14,6 +14,7 @@ library(emoGG)
 library(tidyverse)
 library(lubridate)
 library(tidymodels)
+library(ggtext)
 library(yardstick)
 library(broom)       # for making model summary tidy
 library(visreg)      # for potting logodds and probability 
@@ -221,5 +222,59 @@ ggsave("figures/Figure 5.png", width = 9, height = 3)
 ```
 
 
+```{r}
+# predict the preproc_test dataset
+preproc_test <- na.omit(preproc_test)
+pred <- predict(model_logi, preproc_test, type="response") 
+predicted <- round(pred) # round of the value; >0.5 will convert to 
+                         # 1 else 0
+# Creating a contigency table
+tab <- table(Predicted = predicted, Reference = preproc_test$fem)
+tab
+```
+
+
+```{r}
+#preproc_test <- na.omit(preproc_test)
+pred.rocr <- prediction(pred, preproc_test$fem)
+eval <- performance(pred.rocr, "acc")
+plot(eval)
+```
+
+```{r}
+# Identifying the best cutoff value that maximizes accuracy
+max <- which.max(slot(eval, "y.values")[[1]])
+acc <- slot(eval, "y.values")[[1]][max] #y.values are accuracy 
+                                        #measures
+cut <- slot(eval, "x.values")[[1]][max] #x.values are cutoff 
+                                        #measures
+print(c(Accuracy = acc, Cutoff = cut))
+```
+
+```{r}
+library(yardstick)
+# Creating a actual/observed vs predicted dataframe
+act_pred <- data.frame(observed = preproc_test$fem, predicted =  
+                       factor(predicted))
+# Calculating precision, recall and F1_score
+prec <- precision(act_pred, observed, predicted)
+rec <- recall(act_pred, observed, predicted)
+F1_score <- f_meas(act_pred, observed, predicted) #called f_measure
+print(prec)
+print(rec)
+print(F1_score)
+```
+
+
+```{r}
+perf_rocr <- performance(pred.rocr, measure = "auc",
+                         x.measure = "cutoff")
+perf_rocr@y.values[[1]] <- round(perf_rocr@y.values[[1]], digits = 
+                                 4)
+perf.tpr.fpr.rocr <- performance(pred.rocr, "tpr", "fpr")
+plot(perf.tpr.fpr.rocr, colorize=T, 
+     main = paste("AUC:", (perf_rocr@y.values)))
+abline(a = 0, b = 1)
+```
 
 

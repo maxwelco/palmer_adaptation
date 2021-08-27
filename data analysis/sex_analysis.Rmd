@@ -57,7 +57,6 @@ data1 %>%
                            "bareground" = "fallow")) %>% 
   filter(location != "grant") %>% 
   dplyr::select(fem, gender, location, year, month, crop, height, weight, doyh) -> data2
-  na.omit(data2) -> data2
 ```
 
 ```{r}
@@ -143,11 +142,12 @@ doy_f +
   theme_test() +
   geom_emoji(aes(x = 220, y = 0.95), emoji = "2640") +
   geom_emoji(aes(x = 220, y = 0.05), emoji = "2642") + 
-    theme(legend.position = "none",
-        axis.text.y = element_markdown(size = 25),
-        axis.title = element_markdown(size = 30),
-        axis.text.x = element_markdown(size = 25),
-        legend.text = element_markdown(size = 25)) -> doyf
+    theme(legend.position = "none"#,
+#        axis.text.y = element_markdown(size = 25),
+#        axis.title = element_markdown(size = 30),
+#        axis.text.x = element_markdown(size = 25),
+#        legend.text = element_markdown(size = 25)
+        ) -> doyf
 
 #ggsave("figures/fig2.png")
 ```
@@ -170,11 +170,12 @@ weight_f +
   scale_x_continuous(limits = c(0, 1100), breaks = seq(0, 1100, 150)) +
   geom_emoji(aes(x = 105, y = 0.95), emoji = "2640") +
   geom_emoji(aes(x = 105, y = 0.05), emoji = "2642") +
-    theme(legend.position = "none",
-        axis.text.y = element_markdown(size = 25),
-        axis.title = element_markdown(size = 30),
-        axis.text.x = element_markdown(size = 25),
-        legend.text = element_markdown(size = 25)) -> weightf
+    theme(legend.position = "none"#,
+#        axis.text.y = element_markdown(size = 25),
+#        axis.title = element_markdown(size = 30),
+#        axis.text.x = element_markdown(size = 25),
+#        legend.text = element_markdown(size = 25)
+        ) -> weightf
 
 #ggsave("figures/fig1.png")
 ```
@@ -201,11 +202,12 @@ height_f +
   theme_test() +
   geom_emoji(aes(x = 105, y = 0.95), emoji = "2640") +
   geom_emoji(aes(x = 105, y = 0.05), emoji = "2642") +
-    theme(legend.position = "none",
-        axis.text.y = element_markdown(size = 25),
-        axis.title = element_markdown(size = 30),
-        axis.text.x = element_markdown(size = 25),
-        legend.text = element_markdown(size = 25)) -> heightf
+    theme(legend.position = "none"#,
+#        axis.text.y = element_markdown(size = 25),
+#        axis.title = element_markdown(size = 30),
+#        axis.text.x = element_markdown(size = 25),
+#        legend.text = element_markdown(size = 25)
+        ) -> heightf
 
 #ggsave("figures/fig.png")
 ```
@@ -216,9 +218,9 @@ library(patchwork)
 
 doyf + weightf + heightf +
   plot_annotation(tag_levels = 'A') & 
-  theme(plot.tag = element_text(size = 30, hjust = 0, vjust = 0))
+  theme(plot.tag = element_text(size = 12, hjust = 0, vjust = 0))
 
-ggsave("figures/Figure 5.png", width = 9, height = 3)
+ggsave("figures/Figure 5.png", width = 10, height = 4)
 ```
 
 

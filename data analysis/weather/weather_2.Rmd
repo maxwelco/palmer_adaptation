@@ -175,7 +175,7 @@ text4 <- tibble(site = "Lincoln, NE")
 adaptation_weather %>% 
   filter(month %in% c(6, 7, 8, 9)) %>% 
   group_by(month_lab, site, year) %>% 
-  summarise(pp = sum(pp)) %>% 
+#  summarise(pp = sum(pp)) %>% 
   mutate(year = as.character(year),
          highlight = ifelse(year %in% c("2018", "2019"), TRUE, FALSE),
          variable = if_else(highlight == TRUE, year, "NA")) %>% 
@@ -187,6 +187,12 @@ adaptation_weather %>%
                            "Macomb, IL" = "Macomb")) -> adaptation_pp
 ```
 
+```{r}
+adaptation_pp %>% 
+  filter(!year %in% c(2018, 2019)) %>% 
+ggplot(aes(x = month_lab, y = pp)) +
+  stat_eye(position = "dodge")
+```
 
 
 ```{r message = FALSE, warning = FALSE}

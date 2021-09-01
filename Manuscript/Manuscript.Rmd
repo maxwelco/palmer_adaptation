@@ -84,7 +84,7 @@ A Palmer amaranth accession (Kei3) from Perkins County, Nebraska with no glyphos
 
 ## Field study {-}  
 
-The experiment was conducted in 2018 and 2019 under field conditions at five locations: Arlington, WI (43°18'N, 89°29'W), Clay Center, NE (40.57'N, 9814'W), Grant, NE (XXX'N, XXX'W), Lincoln, NE (41.16'N, 96.42'W), and Macomb, IL (XXX'N, XXX'W).  
+The experiment was conducted in 2018 and 2019 under field conditions at five locations: Arlington, WI (43°18'N, 89°29'W), Clay Center, NE (40.57'N, 9814'W), Grant, NE (40.85'N, -101.70'W), Lincoln, NE (41.16'N, 96.42'W), and Macomb, IL (XXX'N, XXX'W).  
 
 Fields were conventionally tilled prior to crop planting. Corn and soybean were planted in 76-cm row spacing (Table 1). Monthly mean air temperature and total precipitation were obtained using Daymet weather data from June through September across the five locations in 2018 and 2019 [@correndo2021] (Figure 1)
 
@@ -141,7 +141,7 @@ Plants had to be harvested at flowering because Palmer amaranth is neither endem
 
 ## Statistical analyses {-}  
 
-The statistical analyses were performed using R statistical software version 4.0.1 [@rcoreteam2021]. Data analyses are stored at Zenodo [@oliveira2021b].
+The statistical analyses were performed using R statistical software version 4.0.1 [@rcoreteam2021].
 
 Analyses of Palmer amaranth height and biomass were performed with a linear mixed model using *lmer* function from "lme4" package [@bates2015]. Plant height and biomass were log transformed to meet model assumption of normality. In the model, crop (bareground, corn, soybean) and cohort time (first and second) were the fixed effects and year nested with location the random effects. Analysis of variance at $\alpha$ 0.05 was performed with *anova* function from "car" package [@fox2018]. Marginal means and compact letter display were estimated with *emmeans* and *cld* from packages "emmeans" [@lenth2021] and "multcomp" [@hothorn2008], respectively.  
 
@@ -240,6 +240,10 @@ Our study demonstrated the Palmer amaranth plasticity to grow and develop into a
 The authors declare that the research was conducted in the absence of any
 commercial or financial relationships that could be construed as a potential
 conflict of interest.
+
+# Data accessibility {-}
+
+The data and scripts used to analyse the data presented in this work can be found at Zenodo [@oliveira2021b].
 
 # Author Contributions {-}
 

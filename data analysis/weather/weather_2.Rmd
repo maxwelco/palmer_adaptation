@@ -54,7 +54,6 @@ source("weather_daymet.R")
 
 ```{r get_data}
 #dpp default = 0 - dpp = days prior start date
-
 df_daymet <- weather_daymet(input = df_time, dpp = 0) 
 ```
 

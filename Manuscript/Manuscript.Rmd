@@ -87,7 +87,7 @@ A Palmer amaranth accession (Kei3) from Perkins County, Nebraska with no glyphos
 
 The experiment was conducted in 2018 and 2019 under field conditions at five locations: Arlington, WI (43°18'N, 89°29'W), Clay Center, NE (40.57'N, 9814'W), Grant, NE (40.85'N, -101.70'W), Lincoln, NE (41.16'N, 96.42'W), and Macomb, IL (XXX'N, XXX'W).  
 
-Fields were conventionally tilled prior to crop planting. Corn and soybean were planted in 76-cm row spacing (Table 1). Monthly mean air temperature and total precipitation were obtained using Daymet weather data from June through September across the five locations in 2018 and 2019 [@correndo2021] (Figure 1)
+Fields were conventionally tilled prior to crop planting. Corn and soybean were planted in 76-cm row spacing (Table 1). Monthly mean air temperature and total precipitation were obtained using Daymet weather data from June through September across the five locations in 2018 and 2019 [@correndo2021] (Figure 1).
 
 ```{r fig1, echo = FALSE, message=FALSE, fig.show = "hide"}
 knitr::include_graphics("../data analysis/weather/Figure 1.png")

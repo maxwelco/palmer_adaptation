@@ -1,0 +1,133 @@
+---
+title: "map"
+author: "Maxwel Coura Oliveira"
+date: "2/28/2022"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+library(sf)
+```
+
+```{r}
+library(rnaturalearth)
+library(rnaturalearthdata)
+world <- ne_countries(scale = "medium", returnclass = "sf")
+class(world)
+```
+
+
+```{r}
+(sites_1 <- tibble(location = c("Lincoln, NE", "Macomb, IL", "Grant, NE", "Arlington, WI", "Clay Center, NE"),
+                 longitude = c(-96.7026, -90.689, -101.70, -89.38, -98.14), 
+                 latitude = c(40.8136, 40.489, 40.85, 43.33, 40.57)))
+```
+
+```{r}
+(sites <- data.frame(location = c("Lincoln, NE", "Macomb, IL", "Grant, NE", "Arlington, WI", "Clay Center, NE"),
+                     longitude = c(-96.7026, -90.689, -101.70, -89.38, -98.14), 
+                     latitude = c(40.8136, 40.489, 40.85, 43.33, 40.57)))
+
+# #here WGS84, which is the CRS code #4326
+(sites <- st_as_sf(sites, coords = c("longitude", "latitude"), 
+    crs = 4326, agr = "constant"))
+```
+
+
+
+
+
+
+```{r}
+library(tools)
+states$ID <- toTitleCase(states$ID)
+head(states)
+```
+
+
+
+```{r}
+#  US National Atlas Equal Area projection (CRS 2163)
+usa <- subset(world, admin == "United States of America")
+(mainland <- ggplot(data = usa) +
+    geom_sf(fill = "cornsilk") +
+    geom_sf(data = sites, size = 3, shape = c(15, 16, 17, 18, 19)) +
+    coord_sf(crs = st_crs(2163), xlim = c(-2500000, 2500000), ylim = c(-2300000, 
+         730000)))
+```
+
+
+
+
+```{r}
+# Alaska Albers projection (CRS 3467)
+(alaska <- ggplot(data = usa) +
+     geom_sf(fill = "cornsilk") +
+     coord_sf(crs = st_crs(3467), xlim = c(-2400000, 1600000), ylim = c(200000, 
+         2500000), expand = FALSE, datum = NA))
+```
+
+
+```{r}
+# Old Hawaiian projection (CRS 4135)
+(hawaii  <- ggplot(data = usa) +
+     geom_sf(fill = "cornsilk") +
+     coord_sf(crs = st_crs(4135), xlim = c(-161, -154), ylim = c(18, 
+         23), expand = FALSE, datum = NA))
+```
+
+
+```{r}
+library(grid)
+library(ggrepel)
+mainland +
+ annotation_custom(
+      grob = ggplotGrob(alaska),
+      xmin = -2750000,
+      xmax = -2750000 + (1600000 - (-2400000))/2.5,
+      ymin = -2450000,
+      ymax = -2450000 + (2500000 - 200000)/2.5
+  ) +
+  annotation_custom(
+      grob = ggplotGrob(hawaii),
+      xmin = -1250000,
+      xmax = -1250000 + (-154 - (-161))*120000,
+      ymin = -2450000,
+      ymax = -2450000 + (23 - 18)*120000
+  ) +
+  annotation_custom(textGrob(label="Grant, NE", x = 0.40, y = 0.605)) +
+  annotation_custom(textGrob(label="Arlington, WI", x = 0.65, y = 0.75)) +
+  annotation_custom(textGrob(label="Macomb, IL", x = 0.73, y = 0.60)) +
+  annotation_custom(textGrob(label="Lincoln, NE", x = 0.60, y = 0.65)) +
+  annotation_custom(textGrob(label="Clay Center, NE", x = 0.58, y = 0.55)) +
+  annotation_scale(location = "br", width_hint = 0.25) +
+  annotation_north_arrow(location = "tl", which_north = "true", 
+        pad_x = unit(0.1, "in"), pad_y = unit(0.1, "in"),
+        style = north_arrow_nautical) 
+ # geom_sf_text(data = sites, aes(label = location))
+
+ggsave("figures/map.png", width = 7, heigh = 4)
+```
+
+
+```{r}
+library(cowplot)
+# Using cowplot
+(ratioAlaska <- (2500000 - 200000) / (1600000 - (-2400000)))
+(ratioHawaii  <- (23 - 18) / (-154 - (-161)))
+ggdraw(mainland) +
+    draw_plot(alaska, width = 0.26, height = 0.26 * 10/6 * ratioAlaska, 
+        x = 0.05, y = 0.05) +
+    draw_plot(hawaii, width = 0.15, height = 0.15 * 10/6 * ratioHawaii, 
+        x = 0.3, y = 0.05) +
+  annotate("text", label = "Arlington, WI", x = 90, y = 40)
+```
+
+
+
+
+
+
+
+

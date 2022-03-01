@@ -52,7 +52,7 @@ head(states)
 usa <- subset(world, admin == "United States of America")
 (mainland <- ggplot(data = usa) +
     geom_sf(fill = "cornsilk") +
-    geom_sf(data = sites, size = 2, shape = c(15, 16, 17, 18, 19)) +
+    geom_sf(data = sites, size = 2, shape = 16) +
     coord_sf(crs = st_crs(2163), xlim = c(-2500000, 2500000), ylim = c(-2300000, 
          730000)))
 ```
@@ -117,7 +117,7 @@ mainland +
                      segment.color = 'grey50') +
   labs(x= NULL, y = NULL)
 
-ggsave("figures/map.png", width = 7, heigh = 4)
+ggsave("figures/Figure 1.png", width = 7, heigh = 4)
 ```
 
 

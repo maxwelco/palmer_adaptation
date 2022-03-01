@@ -63,7 +63,7 @@ Palmer amaranth (\emph{Amaranthus palmeri} S. Watson) is one of the most trouble
 
 
 # Introduction {-}
-Palmer amaranth (*Amaranthus palmeri* S. Watson) is currently ranked as one of the most economically detrimental weed species to cropping systems in the United States [@vanwychen2020]. Unmanaged Palmer amaranth plants compete for water, light, and nutrients, which can drastically impact crop yields [@berger2015]. For example, Palmer amaranth has been documented to reduce up to 91%, 68%, and 54% corn [@massinga2001], soybean [@klingaman1994], and cotton [@morgan2001] yields, respectively. Moreover, Palmer amaranth has shown a remarkable capacity to evolve resistance to herbicides. To date, Palmer amaranth has evolved resistance to eight herbicide sites of action [@heap2021], increasing the weed management complexity [@lindsay2017] and posing an economical and ecological risk to row-crop agriculture.
+Palmer amaranth (*Amaranthus palmeri* S. Watson) is currently ranked as one of the most economically detrimental weed species to cropping systems in the United States [@vanwychen2020]. Unmanaged Palmer amaranth plants compete for water, light, and nutrients, which can drastically impact crop yields [@berger2015]. For example, Palmer amaranth has been documented to reduce up to 91%, 68%, and 54% corn [@massinga2001], soybean [@klingaman1994], and cotton [@morgan2001] yields, respectively. Moreover, Palmer amaranth has shown a remarkable capacity to evolve resistance to herbicides. To date, Palmer amaranth has evolved resistance to eight herbicide sites of action [@heap2022], increasing the weed management complexity [@lindsay2017] and posing an economical and ecological risk to row-crop agriculture.
 
 Palmer amaranth as a problem weed is a function of both inherent adaptations and selected management practices. Palmer amaranth is a fast growing summer annual forb indigenous to the Sonoran Desert [@sauer1957]. It became a serious problem weed in US agriculture in the 1990s [@ward2013]. Palmer amaranth weediness is likely a result of human-assisted selection combined with plant biology. Farm mechanization, adoption of conservation agriculture (e.g., no-till), and intensive use of herbicides for weed management are the main human-mediated selections of Palmer amaranth in cropping systems [@ward2013]. Palmer amaranth is a prolific seed producer with a C4 photosynthetic apparatus [@wang1992]. With dioecious nature, Palmer amaranth male and female plants are obligate outcrossers, increasing the chances of exchanging adaptive traits among plants [@jhala2021; @oliveira2018]. Also, Palmer amaranth's small seeds (e.g, 1 mm) tend to thrive in no-tillage systems [@price2011], and spread across locations through farm equipment [@sauer1972], seed mixes [@hartzler2016], wildlife [@farmer2017], etc., making it one of the most successful examples of weed adaptation to current cropping systems. 
 
@@ -86,12 +86,16 @@ A Palmer amaranth accession (Kei3) from Perkins County, Nebraska susceptible to 
 
 ## Field study {-}  
 
-The experiment was conducted in 2018 and 2019 under field conditions at five locations: Arlington, WI (43°18'N, 89°29'W), Clay Center, NE (40.57'N, 9814'W), Grant, NE (40.85'N, -101.70'W), Lincoln, NE (41.16'N, 96.42'W), and Macomb, IL (40.49'N, -90.69'W).  
-
-Fields were conventionally tilled prior to crop planting. Corn and soybean were planted in 76-cm row spacing (Table 1). Monthly mean air temperature and total precipitation were obtained using Daymet weather data from June through September across the five locations in 2018 and 2019 [@correndo2021] (Figure 1).
+The experiment was conducted in 2018 and 2019 under field conditions at five locations: Arlington, WI, Clay Center, NE,, Grant, NE, Lincoln, NE, and Macomb, IL.  
 
 ```{r fig1, echo = FALSE, message=FALSE, fig.show = "hide"}
-knitr::include_graphics("../data analysis/weather/Figure 1.png")
+knitr::include_graphics("../data analysis/figures/Figure 1.png")
+```
+
+Fields were conventionally tilled prior to crop planting. Corn and soybean were planted in 76-cm row spacing (Table 1). Monthly mean air temperature and total precipitation were obtained using Daymet weather data from June through September across the five locations in 2018 and 2019 [@correndo2021] (Figure 2).
+
+```{r fig2, echo = FALSE, message=FALSE, fig.show = "hide"}
+knitr::include_graphics("../data analysis/weather/Figure 2.png")
 ```
 
 
@@ -129,10 +133,10 @@ read_csv("../data/table.csv") %>%
 -->
 
 
-The field experimental units were three adjacent 9.1 m wide (12 rows at 76.2 cm row spacing) by 10.7 m long. The experimental design were arranged in factorial design with three crops, two transplanting times simulating two cohorts, repeated across five locations. Each field experimental unit was planted with corn, soybean, or maintained as bareground. The two transplant timings were June 1 (first cohort) and July 1 (second cohort). Palmer amaranth seedlings (potting mix + two seedlings) were transplanted (6 cm deep and 8 cm wide). Forty-eight plants were equidistantly placed (0.76 m apart) between rows within each crop. After a week, one plant was eliminated and one was kept, resulting in 24 plants per experimental unit and transplanting time (Figure 2). When needed, Palmer amaranth plants were supplied with water during the first week after transplanting to assure seedling survival. 
+The field experimental units were three adjacent 9.1 m wide (12 rows at 76.2 cm row spacing) by 10.7 m long. The experimental design were arranged in factorial design with three crops, two transplanting times simulating two cohorts, repeated across five locations. Each field experimental unit was planted with corn, soybean, or maintained as bareground. The two transplant timings were June 1 (first cohort) and July 1 (second cohort). Palmer amaranth seedlings (potting mix + two seedlings) were transplanted (6 cm deep and 8 cm wide). Forty-eight plants were equidistantly placed (0.76 m apart) between rows within each crop. After a week, one plant was eliminated and one was kept, resulting in 24 plants per experimental unit and transplanting time (Figure 3). When needed, Palmer amaranth plants were supplied with water during the first week after transplanting to assure seedling survival. 
 
-```{r fig2, echo = FALSE, message=FALSE, fig.show = "hide"}
-knitr::include_graphics("../data analysis/figures/Figure 2.png")
+```{r fig3, echo = FALSE, message=FALSE, fig.show = "hide"}
+knitr::include_graphics("../data analysis/figures/Figure 3.png")
 ```
 
 
@@ -166,35 +170,35 @@ A binary logistic regression was fitted to Palmer amaranth gender. Binary logist
 
 ## Palmer amaranth height and biomass {-}  
 
-Palmer amaranth plants accumulated more biomass when growing in bareground compared to plants growing in soybean and corn (Figure 3A). Palmer amaranth plants in the first cohort produced 75.5, 28.3, and 16.3 g plant\textsuperscript{-1} in bareground, soybean and corn, respectively. Plants from the second cohort produced 62.6 g plant\textsuperscript{-1} in bareground, followed by 6.3 g plant\textsuperscript{-1} in soybean, and 1.4 g plant\textsuperscript{-1} in corn.   
-
-```{r fig3, echo = FALSE, message=FALSE, fig.show = "hide"}
-knitr::include_graphics("../data analysis/figures/Figure 3.png")
-```
-
-Palmer amaranth height was less affected by cohort timing than was weight, with the exception of plants growing in corn (Figure 3B). Plants from the first cohort were on average 69.2 cm tall in bareground, which was not different from the 70.7 cm tall plants from the second cohort timing (P = 0.74). In addition, no difference in Palmer amaranth height (69.3 cm) was detected from first cohort plants in soybean to first and second cohort plants in bareground (P > 0.75). Palmer amaranth plants from the second cohort were nearly 10 cm shorter compared to the first cohort in soybeans (P = 0.04). The tallest (85.2 cm, first cohort) and shortest (38.2 cm, second cohort) plants were observed in corn.  
-
-
-## Palmer amaranth cumulative flowering {-}  
-
-The initiation and duration of Palmer amaranth flowering were strongly influenced by cohort and surrounding vegetation (Figure 4A, 4B). In the first cohort, floral initiation (10% flowering) occurred near the end of June for all three treatments, at doy 180, 180.9, and 181.7 for soybean, bareground, and corn, respectively.  In the second cohort, floral initiation occurred earlier on plants growing in the bareground than plants growing in soybean or corn (doy 203.8 versus doy 210.9 or 216.8, respectively). Palmer amaranth growing in the bareground had the shortest flowering initiation (measured as the difference between 10% and 90% cumulative flowering) in both the first (34 days) and second (28 days) cohorts. Palmer amaranth growing in soybean had a shorter duration of flowering than corn in the first cohort (40 days vs 71 days), but a longer duration in the second cohort (50 vs 44 days). 
+Palmer amaranth plants accumulated more biomass when growing in bareground compared to plants growing in soybean and corn (Figure 4A). Palmer amaranth plants in the first cohort produced 75.5, 28.3, and 16.3 g plant\textsuperscript{-1} in bareground, soybean and corn, respectively. Plants from the second cohort produced 62.6 g plant\textsuperscript{-1} in bareground, followed by 6.3 g plant\textsuperscript{-1} in soybean, and 1.4 g plant\textsuperscript{-1} in corn.   
 
 ```{r fig4, echo = FALSE, message=FALSE, fig.show = "hide"}
 knitr::include_graphics("../data analysis/figures/Figure 4.png")
 ```
 
-Palmer amaranth cumulative flowering in the second cohort occurred from mid July to mid September (Figure 4B). Palmer amaranth growing in the bareground resulted in earlier flowering time compared to soybean and corn. Palmer amaranth growing in bareground reached 10%, 50%, and 90% flowering time at day 203.8, 214.4, and 232.2, respectively. Palmer amaranth growing in soybean reached 10% flowering at doy 210.9, which was 6 days prior to corn (*P*-value = 0.00). Similar trend was observed at 50% flowering, whereas Palmer amaranth reached 50% flowering in corn (doy 233.0) 4 days after soybeans (doy 228.9; *P* = 0.00). The 90% Palmer amaranth cumulative flowering occurred at same day in corn (260.9) and soybean (260.5; *P* = 0.66).  
+Palmer amaranth height was less affected by cohort timing than was weight, with the exception of plants growing in corn (Figure 4B). Plants from the first cohort were on average 69.2 cm tall in bareground, which was not different from the 70.7 cm tall plants from the second cohort timing (P = 0.74). In addition, no difference in Palmer amaranth height (69.3 cm) was detected from first cohort plants in soybean to first and second cohort plants in bareground (P > 0.75). Palmer amaranth plants from the second cohort were nearly 10 cm shorter compared to the first cohort in soybeans (P = 0.04). The tallest (85.2 cm, first cohort) and shortest (38.2 cm, second cohort) plants were observed in corn.  
+
+
+## Palmer amaranth cumulative flowering {-}  
+
+The initiation and duration of Palmer amaranth flowering were strongly influenced by cohort and surrounding vegetation (Figure 5A, 4B). In the first cohort, floral initiation (10% flowering) occurred near the end of June for all three treatments, at doy 180, 180.9, and 181.7 for soybean, bareground, and corn, respectively.  In the second cohort, floral initiation occurred earlier on plants growing in the bareground than plants growing in soybean or corn (doy 203.8 versus doy 210.9 or 216.8, respectively). Palmer amaranth growing in the bareground had the shortest flowering initiation (measured as the difference between 10% and 90% cumulative flowering) in both the first (34 days) and second (28 days) cohorts. Palmer amaranth growing in soybean had a shorter duration of flowering than corn in the first cohort (40 days vs 71 days), but a longer duration in the second cohort (50 vs 44 days). 
+
+```{r fig5, echo = FALSE, message=FALSE, fig.show = "hide"}
+knitr::include_graphics("../data analysis/figures/Figure 5.png")
+```
+
+Palmer amaranth cumulative flowering in the second cohort occurred from mid July to mid September (Figure 5B). Palmer amaranth growing in the bareground resulted in earlier flowering time compared to soybean and corn. Palmer amaranth growing in bareground reached 10%, 50%, and 90% flowering time at day 203.8, 214.4, and 232.2, respectively. Palmer amaranth growing in soybean reached 10% flowering at doy 210.9, which was 6 days prior to corn (*P*-value = 0.00). Similar trend was observed at 50% flowering, whereas Palmer amaranth reached 50% flowering in corn (doy 233.0) 4 days after soybeans (doy 228.9; *P* = 0.00). The 90% Palmer amaranth cumulative flowering occurred at same day in corn (260.9) and soybean (260.5; *P* = 0.66).  
 
 ## Palmer amaranth gender {-} 
 
-The model goodness of fit was 0.23, 0.32, 0.40 using pseudo R-squared test from McFadden, Cox and Snell, and Cragg and Uhler, respectively. The likelihood ratio test showed a p-value of < 0.00. The average marginal effects showed that Palmer amaranth growing in corn resulted in 14.8% fewer females plants (Table 2). Moreover, increasing a cumulative flowering unit doy increases the probability of having a female plant by 0.4% (Table 2 and Figure5A). A similar trend was observed for weight (Figure 5B) and height (Figure 5C), where the probability of being female increased 0.1% and 0.2% for each unit increase of weight and height, respectively (Table 2).
+The model goodness of fit was 0.23, 0.32, 0.40 using pseudo R-squared test from McFadden, Cox and Snell, and Cragg and Uhler, respectively. The likelihood ratio test showed a p-value of < 0.00. The average marginal effects showed that Palmer amaranth growing in corn resulted in 14.8% fewer females plants (Table 2). Moreover, increasing a cumulative flowering unit doy increases the probability of having a female plant by 0.4% (Table 2 and Figure5A). A similar trend was observed for weight (Figure 6B) and height (Figure 6C), where the probability of being female increased 0.1% and 0.2% for each unit increase of weight and height, respectively (Table 2).
 
 
 ```{r echo = FALSE, warning = FALSE, message=FALSE}
 readr::read_csv("../data/table_a.csv") -> table_a
   
 table_a %>% 
-  kableExtra::kable(booktabs = TRUE, escape = TRUE, caption = "Average marginal effects of Palmer amaranth gender logistic model. Factor pararemter values (crop_corn and 'crop_bareground) are calculated relative to soybean.") %>% 
+  kableExtra::kable(booktabs = TRUE, escape = TRUE, caption = "Average marginal effects of Palmer amaranth gender logistic model. Factor pararemter values (crop_corn and crop_bareground) are calculated relative to soybean.") %>% 
   kable_styling(font_size = 10, 
                 full_width = FALSE, 
                 position = "center",
@@ -206,8 +210,8 @@ table_a %>%
 ```
 
 
-```{r fig5, echo = FALSE, message=FALSE, fig.show = "hide"}
-knitr::include_graphics("../data analysis/figures/Figure 5.png")
+```{r fig6, echo = FALSE, message=FALSE, fig.show = "hide"}
+knitr::include_graphics("../data analysis/figures/Figure 6.png")
 ```
 
 The model accuracy evaluation accuracy in the 20% test dataset was 0.62 with a cutoff value for female and male plants of 0.43. The model classification showed a precision of 0.64, recall of 0.66, and a F1-score of 0.65. In addition, the AUC was 0.64.  
@@ -216,10 +220,10 @@ The model accuracy evaluation accuracy in the 20% test dataset was 0.62 with a c
 
 # Discussion {-}
 
-Our study demonstrate that Palmer amaranth is well adapted to growing conditions throughout the Midwestern United States, and is simply limited in its range by seed dispersal (Davis et al. 2015). We also confirmed Palmer amaranth's extraordinary plasticity to adapt to different agroecosystems. For example, Palmer amaranth mimicked crop architecture in competing for light (Figure 6), where plants growing in corn allocated resources to height, while plants growing in bareground allocated resources to numerous branches. Plants growing in the absence of a crop produced the greatest biomass, responding to a greater abundance of light, nutrient and water resources (Figure 3A, 3B). These results support the argument that Palmer amaranth can quickly evolve life-history traits to adapt to different cultural practices, similar to observations in a Palmer amaranth response to nitrogen study [@bravo2018]. Our results highlight Palmer amaranth as a threat to field crops and breeding more competitive crop varieties is likely to select more competitive weed biotypes [@bravo2017].   
+Our study demonstrate that Palmer amaranth is well adapted to growing conditions throughout the Midwestern United States, and is simply limited in its range by seed dispersal (Davis et al. 2015). We also confirmed Palmer amaranth's extraordinary plasticity to adapt to different agroecosystems. For example, Palmer amaranth mimicked crop architecture in competing for light (Figure 7), where plants growing in corn allocated resources to height, while plants growing in bareground allocated resources to numerous branches. Plants growing in the absence of a crop produced the greatest biomass, responding to a greater abundance of light, nutrient and water resources (Figure 4A, 3B). These results support the argument that Palmer amaranth can quickly evolve life-history traits to adapt to different cultural practices, similar to observations in a Palmer amaranth response to nitrogen study [@bravo2018]. Our results highlight Palmer amaranth as a threat to field crops and breeding more competitive crop varieties is likely to select more competitive weed biotypes [@bravo2017].   
 
-```{r fig6, echo = FALSE, message=FALSE, fig.show = "hide"}
-knitr::include_graphics("../data analysis/figures/Figure 6.png")
+```{r fig7, echo = FALSE, message=FALSE, fig.show = "hide"}
+knitr::include_graphics("../data analysis/figures/Figure 7.png")
 ```
 
 
@@ -232,7 +236,7 @@ An ecological approach to reduce Palmer amaranth seed production encompasses und
 
 The mechanisms of gender-determination in plant species is intriguing and has arouse the curiosity of many scientists, including Charles Darwin [@darwin1888]. In our study, the gender model performance was decent (AUC 0.64) considering the biology of plant flowering. A 1:1 male and female sex ratio is a general and evolutionarily stable strategy for plant species perpetuation [@fisher1930]. However, a slight deviation from 1:1 sex ratio occurs in some dioecious species. For example, the dioecious *Halophila stipulacea* is a female-biased plant in its native habitat, but the naturalized *H. stipulacea* has a 1:1 ratio [@nguyen2018]. Naturalization of *H. stipulacea* reduced female-male ratio to expand into its non-native habitat [@nguyen2018]. Also, biotic and/or abiotic stress can influence plant gender determination. Palmer amaranth  male-to-female ratio was greater under high plant densities [@korres2017a] and after herbicide application [@rumpa2019]. We observed sexual dimorphism in Palmer amaranth in response to surrounding vegetation and plant morphological attributes. Our model estimated that late flowering, heavier and taller Palmer amaranth plants slightly deviated from 1:1 ratio in favor of female plants. It was reported that female Palmer amaranth plants invested more in height, stem and biomass while male plants invested more in leaf area and leaf dry weight under nutrient deficiency [@korres2017]. We observed more female plants in soybean and bareground compared to corn. Palmer amaranth plants in the corn were more stressed by interspecific competition as evidenced by less biomass and a lower weight:height ratio. Sexual dimorphism is documented in other dioecious species [@barrett2013]. For example, stronger female plant competition and greater male tolerance to herbivory was reported in *Spinacia oleracea* [@perez-llorca2019]. Research on candidate genes for sex determination in *Amaranthus* species are currently underway but is far from complete [@montgomery2021; @montgomery2019]. Further studies are also needed to understand the ecological basis of Palmer amaranth flowering, including plant behavior under climate change.  
 
-Our study demonstrated that Palmer amaranth is adapted to grow on arable land throughout the Midwestern U.S. Palmer amaranth's range will continue to expand if current cropping practices are continued. As waterhemp and Palmer amaranth begin to share the same habitat, it will increase weed management complexity. Preventing Palmer amaranth seed dispersal must be a priority. Regional collaboration is necessary to slow the spread of this aggressive and adaptable weed. Where Palmer amaranth occurs, management tactics should focus on limiting Palmer amaranth establishment until row crops can shade late-emerging plants. Increasing the diversity of crops in rotation, varying row crop planting date, narrowing row width, and increasing residue cover through the use of cover crops are all tactics that can minimize the growth and seed production of Palmer amaranth, and improve the sustainability of Midwestern cropping systems.
+Our study demonstrated that Palmer amaranth is adapted to grow on arable land throughout the Midwestern U.S. Palmer amaranth's range will continue to expand if current cropping practices are continued. As waterhemp and Palmer amaranth begin to share the same habitat, it will increase weed management complexity. Preventing Palmer amaranth seed dispersal must be a priority. Regional collaboration is necessary to slow the spread of this aggressive and adaptable weed. Where Palmer amaranth occurs, management tactics should focus on limiting Palmer amaranth establishment until row crops can shade late-emerging plants. Increasing the diversity of crops in rotation, varying row crop planting date, narrowing row width, and increasing residue cover through the use of cover crops are all tactics that can minimize the growth and seed production of Palmer amaranth, and improve the sustainability of North Central United States cropping systems.
 
 
 # Disclosure/Conflict-of-Interest Statement {-}
@@ -264,31 +268,35 @@ Funding: This work received no specific grant from any funding agency, commercia
 
 # Figures {-}
 
-```{r, Figure-1, ref.label = "fig1", echo = FALSE, message = FALSE, fig.height=3, fig.width=6, fig.align='center', fig.cap='Mean average temperature (C) and total montly precipitation (mm) at Arlington, WI, Clay Center, NE, Grant, NE, Lincoln, NE and Macomb, IL.', out.width = "160mm", out.height = "100mm"}
+```{r, Figure-1, ref.label = "fig1", echo = FALSE, message = FALSE, fig.height=3, fig.width=6, fig.align='center', fig.cap='Field research locations in the United States north central region.', out.width = "160mm", out.height = "90mm"}
+# You can also refer to code chunks from above to place figures at the bottom.
+```
+
+```{r, Figure-2, ref.label = "fig2", echo = FALSE, message = FALSE, fig.height=3, fig.width=6, fig.align='center', fig.cap='Mean average temperature (C) and total montly precipitation (mm) at Arlington, WI, Clay Center, NE, Grant, NE, Lincoln, NE and Macomb, IL.', out.width = "160mm", out.height = "100mm"}
 # You can also refer to code chunks from above to place figures at the bottom.
 ```
 
 
-```{r, Figure-2, ref.label = "fig2", echo = FALSE, message = FALSE, fig.height=3, fig.width=6, fig.align='center', fig.cap='Palmer amaranth adaptation study layout of a plant cohort timing in bareground, corn, and soybean. Twenty-four Palmer amaranth plants were place 76.2 cm apart in each field experimental unit.', out.width = "150mm", out.height = "70mm"}
+```{r, Figure-3, ref.label = "fig3", echo = FALSE, message = FALSE, fig.height=3, fig.width=6, fig.align='center', fig.cap='Palmer amaranth adaptation study layout of a plant cohort timing in bareground, corn, and soybean. Twenty-four Palmer amaranth plants were place 76.2 cm apart in each field experimental unit.', out.width = "150mm", out.height = "70mm"}
 # You can also refer to code chunks from above to place figures at the bottom.
 ```
 
 
-```{r, Figure-3, ref.label = "fig3", echo = FALSE, message = FALSE, fig.height=9, fig.width=4, fig.align='center', fig.cap='Palmer amaranth biomass (A) and height (B) growing in corn, bareground, and soybean nested across Arlington, WI, Clay Center, NE, Grant, NE, Lincoln, NE and Macomb, IL.', out.width = "150mm", out.height = "90mm"}
+```{r, Figure-4, ref.label = "fig4", echo = FALSE, message = FALSE, fig.height=9, fig.width=4, fig.align='center', fig.cap='Palmer amaranth biomass (A) and height (B) growing in corn, bareground, and soybean nested across Arlington, WI, Clay Center, NE, Grant, NE, Lincoln, NE and Macomb, IL.', out.width = "150mm", out.height = "90mm"}
 # You can also refer to code chunks from above to place figures at the bottom.
 ```
 
 
-```{r, Figure-4, ref.label = "fig4", echo = FALSE, message = FALSE, fig.height=9, fig.width=4, fig.align='center', fig.cap='Cumulative flowering of Palmer amaranth at first and second transplant timing (A) and day of year of 10, 50, and 90 cumulative flowering at first and second cohort transplanting time (B) nested across Arlington, WI, Clay Center, NE, Grant, NE, Lincoln, NE and Macomb, IL.', out.width = "150mm", out.height = "150mm"}
+```{r, Figure-5, ref.label = "fig5", echo = FALSE, message = FALSE, fig.height=9, fig.width=4, fig.align='center', fig.cap='Cumulative flowering of Palmer amaranth at first and second transplant timing (A) and day of year of 10, 50, and 90 cumulative flowering at first and second cohort transplanting time (B) nested across Arlington, WI, Clay Center, NE, Grant, NE, Lincoln, NE and Macomb, IL.', out.width = "150mm", out.height = "150mm"}
 # You can also refer to code chunks from above to place figures at the bottom.
 ```
 
 
-```{r, Figure-5, ref.label = "fig5", echo = FALSE, message = FALSE, fig.height=9, fig.width=4, fig.align='center', fig.cap='The probability (P) of being female Palmer amaranth by day of year (A), weight (B), and height (C). Black line represents the model estimation and shaded green the confidence intervals.', out.width = "170mm", out.height = "70mm"}
+```{r, Figure-6, ref.label = "fig6", echo = FALSE, message = FALSE, fig.height=9, fig.width=4, fig.align='center', fig.cap='The probability (P) of being female Palmer amaranth by day of year (A), weight (B), and height (C). Black line represents the model estimation and shaded green the confidence intervals.', out.width = "170mm", out.height = "70mm"}
 # You can also refer to code chunks from above to place figures at the bottom.
 ```
 
 
-```{r, Figure-6, ref.label = "fig6", echo = FALSE, message = FALSE, fig.height=9, fig.width=4, fig.align='center', fig.cap='MCO (180 cm) holds harvested Palmer amaranth plants at 40 days after first cohort transplanting (A) and 33 days after second cohort transplanting (B) time. From left to right in each image, Palmer amaranth growing in bareground, soybean and corn in Arlington, Wisconsin.', out.width = "150mm", out.height = "90mm"}
+```{r, Figure-7, ref.label = "fig7", echo = FALSE, message = FALSE, fig.height=9, fig.width=4, fig.align='center', fig.cap='MCO (first manuscript author, 180 cm) holds harvested Palmer amaranth plants at 40 days after first cohort transplanting (A) and 33 days after second cohort transplanting (B) time. From left to right in each image, Palmer amaranth growing in bareground, soybean and corn in Arlington, Wisconsin.', out.width = "150mm", out.height = "90mm"}
 # You can also refer to code chunks from above to place figures at the bottom.
 ```

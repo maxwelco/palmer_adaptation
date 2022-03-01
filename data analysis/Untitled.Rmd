@@ -52,7 +52,7 @@ head(states)
 usa <- subset(world, admin == "United States of America")
 (mainland <- ggplot(data = usa) +
     geom_sf(fill = "cornsilk") +
-    geom_sf(data = sites, size = 3, shape = c(15, 16, 17, 18, 19)) +
+    geom_sf(data = sites, size = 2, shape = c(15, 16, 17, 18, 19)) +
     coord_sf(crs = st_crs(2163), xlim = c(-2500000, 2500000), ylim = c(-2300000, 
          730000)))
 ```
@@ -81,6 +81,9 @@ usa <- subset(world, admin == "United States of America")
 ```{r}
 library(grid)
 library(ggrepel)
+library(ggspatial)
+library(ggsflabel)
+library(cowplot)
 mainland +
  annotation_custom(
       grob = ggplotGrob(alaska),
@@ -96,33 +99,28 @@ mainland +
       ymin = -2450000,
       ymax = -2450000 + (23 - 18)*120000
   ) +
-  annotation_custom(textGrob(label="Grant, NE", x = 0.40, y = 0.605)) +
-  annotation_custom(textGrob(label="Arlington, WI", x = 0.65, y = 0.75)) +
-  annotation_custom(textGrob(label="Macomb, IL", x = 0.73, y = 0.60)) +
-  annotation_custom(textGrob(label="Lincoln, NE", x = 0.60, y = 0.65)) +
-  annotation_custom(textGrob(label="Clay Center, NE", x = 0.58, y = 0.55)) +
+#  annotation_custom(textGrob(label="Grant, NE", x = 0.40, y = 0.605)) +
+#  annotation_custom(textGrob(label="Arlington, WI", x = 0.65, y = 0.75)) +
+#  annotation_custom(textGrob(label="Macomb, IL", x = 0.73, y = 0.60)) +
+#  annotation_custom(textGrob(label="Lincoln, NE", x = 0.60, y = 0.65)) +
+#  annotation_custom(textGrob(label="Clay Center, NE", x = 0.58, y = 0.55)) +
   annotation_scale(location = "br", width_hint = 0.25) +
   annotation_north_arrow(location = "tl", which_north = "true", 
         pad_x = unit(0.1, "in"), pad_y = unit(0.1, "in"),
-        style = north_arrow_nautical) 
- # geom_sf_text(data = sites, aes(label = location))
+        style = north_arrow_nautical) +
+  geom_sf_text_repel(data = sites, aes(label = location), size = 2.5,
+                     min.segment.length = 1, point.padding = 0.5, 
+                     box.padding = 0.25,
+                     max.overlaps = 10,
+                     seed = 564,
+                     max.iter = 10000,
+                     segment.color = 'grey50') +
+  labs(x= NULL, y = NULL)
 
 ggsave("figures/map.png", width = 7, heigh = 4)
 ```
 
 
-```{r}
-library(cowplot)
-# Using cowplot
-(ratioAlaska <- (2500000 - 200000) / (1600000 - (-2400000)))
-(ratioHawaii  <- (23 - 18) / (-154 - (-161)))
-ggdraw(mainland) +
-    draw_plot(alaska, width = 0.26, height = 0.26 * 10/6 * ratioAlaska, 
-        x = 0.05, y = 0.05) +
-    draw_plot(hawaii, width = 0.15, height = 0.15 * 10/6 * ratioHawaii, 
-        x = 0.3, y = 0.05) +
-  annotate("text", label = "Arlington, WI", x = 90, y = 40)
-```
 
 
 

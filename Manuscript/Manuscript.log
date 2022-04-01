@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2022.1.24)  1 MAR 2022 12:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2022.3.31)  1 APR 2022 09:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **Manuscript.tex
 (./Manuscript.tex
 LaTeX2e <2021-11-15> patch level 1
-L3 programming layer <2022-01-21> (./frontiersSCNS.cls
+L3 programming layer <2022-02-24> (./frontiersSCNS.cls
 Document Class: frontiersSCNS 2016/11/10 2.6
 (/Users/maxwelco/Library/TinyTeX/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2021/02/14 v1.3d Input encoding file
@@ -19,7 +19,7 @@ Package: crop 2017/11/19 1.10 crop marks (mf)
 Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
 
 (/Users/maxwelco/Library/TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty
-Package: iftex 2020/03/06 v1.0d TeX engine tests
+Package: iftex 2022/02/03 v1.0f TeX engine tests
 ))
 \stockwidth=\dimen138
 \stockheight=\dimen139
@@ -284,17 +284,18 @@ Package xcolor Info: Model `wave' substituted by `hsb' on input line 1375.
 File: dvipsnam.def 2016/06/17 v3.0m Driver-dependent file (DPC,SPQR)
 ))
 (/Users/maxwelco/Library/TinyTeX/texmf-dist/tex/latex/caption/caption.sty
-Package: caption 2020/10/26 v3.5g Customizing captions (AR)
+Package: caption 2022/03/01 v3.6b Customizing captions (AR)
 
 (/Users/maxwelco/Library/TinyTeX/texmf-dist/tex/latex/caption/caption3.sty
-Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
-\captionmargin=\dimen158
-\captionmargin@=\dimen159
-\captionwidth=\dimen160
-\caption@tempdima=\dimen161
-\caption@indent=\dimen162
-\caption@parindent=\dimen163
-\caption@hangindent=\dimen164
+Package: caption3 2022/03/17 v2.3b caption3 kernel (AR)
+\caption@tempdima=\dimen158
+\captionmargin=\dimen159
+\caption@leftmargin=\dimen160
+\caption@rightmargin=\dimen161
+\caption@width=\dimen162
+\caption@indent=\dimen163
+\caption@parindent=\dimen164
+\caption@hangindent=\dimen165
 \abovecaptionskip=\skip57
 \belowcaptionskip=\skip58
 Package caption Info: Document class w/o caption stuff detected.
@@ -303,7 +304,7 @@ Package caption Info: Document class w/o caption stuff detected.
 \c@continuedfloat=\count299
 )
 (/Users/maxwelco/Library/TinyTeX/texmf-dist/tex/latex/caption/subcaption.sty
-Package: subcaption 2020/10/07 v1.3j Sub-captions (AR)
+Package: subcaption 2022/01/07 v1.5 Sub-captions (AR)
 )
 \c@section=\count300
 \c@subsection=\count301
@@ -316,8 +317,8 @@ Package: subcaption 2020/10/07 v1.3j Sub-captions (AR)
 \dropfromtop=\skip59
 \extraspace=\skip60
 \aboveskipchk=\skip61
-\rotdimen=\dimen165
-\tempdime=\dimen166
+\rotdimen=\dimen166
+\tempdime=\dimen167
 \temptbox=\box62
 
 (/Users/maxwelco/Library/TinyTeX/texmf-dist/tex/latex/natbib/natbib.sty
@@ -332,7 +333,7 @@ LaTeX Info: Redefining \cite on input line 694.
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 (/Users/maxwelco/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty
-Package: hyperref 2021-06-07 v7.00m Hypertext links for LaTeX
+Package: hyperref 2022-02-21 v7.00n Hypertext links for LaTeX
 
 (/Users/maxwelco/Library/TinyTeX/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.s
 ty
@@ -361,19 +362,14 @@ Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
 ) (/Users/maxwelco/Library/TinyTeX/texmf-dist/tex/latex/auxhook/auxhook.sty
 Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 )
-\@linkdim=\dimen167
+\@linkdim=\dimen168
 \Hy@linkcounter=\count309
 \Hy@pagecounter=\count310
 
 (/Users/maxwelco/Library/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
-File: pd1enc.def 2021-06-07 v7.00m Hyperref: PDFDocEncoding definition (HO)
+File: pd1enc.def 2022-02-21 v7.00n Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
-)
-(/Users/maxwelco/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hyperref-langpat
-ches.def
-File: hyperref-langpatches.def 2021-06-07 v7.00m Hyperref: patches for babel la
-nguages
 )
 (/Users/maxwelco/Library/TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
@@ -384,21 +380,21 @@ Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 \Hy@SavedSpaceFactor=\count311
 
 (/Users/maxwelco/Library/TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
-File: puenc.def 2021-06-07 v7.00m Hyperref: PDF Unicode definition (HO)
+File: puenc.def 2022-02-21 v7.00n Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
 ... no UTF-8 mapping file for font encoding PU
 )
-Package hyperref Info: Hyper figures OFF on input line 4192.
-Package hyperref Info: Link nesting OFF on input line 4197.
-Package hyperref Info: Hyper index ON on input line 4200.
-Package hyperref Info: Plain pages OFF on input line 4207.
-Package hyperref Info: Backreferencing OFF on input line 4212.
+Package hyperref Info: Hyper figures OFF on input line 4137.
+Package hyperref Info: Link nesting OFF on input line 4142.
+Package hyperref Info: Hyper index ON on input line 4145.
+Package hyperref Info: Plain pages OFF on input line 4152.
+Package hyperref Info: Backreferencing OFF on input line 4157.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4445.
-LaTeX Info: Redefining \href on input line 4715.
+Package hyperref Info: Bookmarks ON on input line 4390.
+LaTeX Info: Redefining \href on input line 4660.
 \c@Hy@tempcnt=\count312
-LaTeX Info: Redefining \url on input line 4804.
-\XeTeXLinkMargin=\dimen168
+LaTeX Info: Redefining \url on input line 4749.
+\XeTeXLinkMargin=\dimen169
 
 (/Users/maxwelco/Library/TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
@@ -409,17 +405,17 @@ Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
 \Fld@menulength=\count313
-\Field@Width=\dimen169
-\Fld@charsize=\dimen170
-Package hyperref Info: Hyper figures OFF on input line 6076.
-Package hyperref Info: Link nesting OFF on input line 6081.
-Package hyperref Info: Hyper index ON on input line 6084.
-Package hyperref Info: backreferencing OFF on input line 6091.
-Package hyperref Info: Link coloring OFF on input line 6096.
-Package hyperref Info: Link coloring with OCG OFF on input line 6101.
-Package hyperref Info: PDF/A mode OFF on input line 6106.
-LaTeX Info: Redefining \ref on input line 6146.
-LaTeX Info: Redefining \pageref on input line 6150.
+\Field@Width=\dimen170
+\Fld@charsize=\dimen171
+Package hyperref Info: Hyper figures OFF on input line 6027.
+Package hyperref Info: Link nesting OFF on input line 6032.
+Package hyperref Info: Hyper index ON on input line 6035.
+Package hyperref Info: backreferencing OFF on input line 6042.
+Package hyperref Info: Link coloring OFF on input line 6047.
+Package hyperref Info: Link coloring with OCG OFF on input line 6052.
+Package hyperref Info: PDF/A mode OFF on input line 6057.
+LaTeX Info: Redefining \ref on input line 6097.
+LaTeX Info: Redefining \pageref on input line 6101.
 
 (/Users/maxwelco/Library/TinyTeX/texmf-dist/tex/latex/base/atbegshi-ltx.sty
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
@@ -432,7 +428,7 @@ package with kernel methods
 Package hyperref Info: Driver (autodetected): hpdftex.
 
 (/Users/maxwelco/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hpdftex.def
-File: hpdftex.def 2021-06-07 v7.00m Hyperref driver for pdfTeX
+File: hpdftex.def 2022-02-21 v7.00n Hyperref driver for pdfTeX
 
 (/Users/maxwelco/Library/TinyTeX/texmf-dist/tex/latex/base/atveryend-ltx.sty
 Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend pac
@@ -460,43 +456,44 @@ Package: lineno 2005/11/02 line numbers on paragraphs v4.41
 \linenopenalty=\count319
 \output=\toks37
 \linenoprevgraf=\count320
-\linenumbersep=\dimen171
-\linenumberwidth=\dimen172
+\linenumbersep=\dimen172
+\linenumberwidth=\dimen173
 \c@linenumber=\count321
 \c@pagewiselinenumber=\count322
 \c@LN@truepage=\count323
 \c@internallinenumber=\count324
 \c@internallinenumbers=\count325
-\quotelinenumbersep=\dimen173
-\bframerule=\dimen174
-\bframesep=\dimen175
+\quotelinenumbersep=\dimen174
+\bframerule=\dimen175
+\bframesep=\dimen176
 \bframebox=\box63
 LaTeX Info: Redefining \\ on input line 3056.
 )
 (/Users/maxwelco/Library/TinyTeX/texmf-dist/tex/latex/microtype/microtype.sty
-Package: microtype 2021/12/10 v3.0b Micro-typographical refinements (RS)
+Package: microtype 2022/03/14 v3.0d Micro-typographical refinements (RS)
 \MT@toks=\toks38
-\MT@count=\count326
 \MT@tempbox=\box64
-LaTeX Info: Redefining \leftprotrusion on input line 1010.
-LaTeX Info: Redefining \rightprotrusion on input line 1018.
-LaTeX Info: Redefining \textls on input line 1173.
-\MT@outer@kern=\dimen176
-LaTeX Info: Redefining \textmicrotypecontext on input line 1759.
+\MT@count=\count326
+LaTeX Info: Redefining \noprotrusionifhmode on input line 1027.
+LaTeX Info: Redefining \leftprotrusion on input line 1028.
+LaTeX Info: Redefining \rightprotrusion on input line 1036.
+LaTeX Info: Redefining \textls on input line 1195.
+\MT@outer@kern=\dimen177
+LaTeX Info: Redefining \textmicrotypecontext on input line 1781.
 \MT@listname@count=\count327
 
 (/Users/maxwelco/Library/TinyTeX/texmf-dist/tex/latex/microtype/microtype-pdfte
 x.def
-File: microtype-pdftex.def 2021/12/10 v3.0b Definitions specific to pdftex (RS)
+File: microtype-pdftex.def 2022/03/14 v3.0d Definitions specific to pdftex (RS)
 
-LaTeX Info: Redefining \lsstyle on input line 897.
-LaTeX Info: Redefining \lslig on input line 897.
+LaTeX Info: Redefining \lsstyle on input line 900.
+LaTeX Info: Redefining \lslig on input line 900.
 \MT@outer@space=\skip65
 )
 Package microtype Info: Loading configuration file microtype.cfg.
 
 (/Users/maxwelco/Library/TinyTeX/texmf-dist/tex/latex/microtype/microtype.cfg
-File: microtype.cfg 2021/12/10 v3.0b microtype main configuration file (RS)
+File: microtype.cfg 2022/03/14 v3.0d microtype main configuration file (RS)
 )) (/Users/maxwelco/Library/TinyTeX/texmf-dist/tex/latex/setspace/setspace.sty
 Package: setspace 2011/12/19 v6.7a set line spacing
 )
@@ -521,8 +518,8 @@ Package: cite 2015/02/27  v 5.5
 Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
 \calc@Acount=\count331
 \calc@Bcount=\count332
-\calc@Adimen=\dimen177
-\calc@Bdimen=\dimen178
+\calc@Adimen=\dimen178
+\calc@Bdimen=\dimen179
 \calc@Askip=\skip68
 \calc@Bskip=\skip69
 LaTeX Info: Redefining \setlength on input line 80.
@@ -532,23 +529,23 @@ LaTeX Info: Redefining \addtolength on input line 81.
 )
 (/Users/maxwelco/Library/TinyTeX/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
-\heavyrulewidth=\dimen179
-\lightrulewidth=\dimen180
-\cmidrulewidth=\dimen181
-\belowrulesep=\dimen182
-\belowbottomsep=\dimen183
-\aboverulesep=\dimen184
-\abovetopsep=\dimen185
-\cmidrulesep=\dimen186
-\cmidrulekern=\dimen187
-\defaultaddspace=\dimen188
+\heavyrulewidth=\dimen180
+\lightrulewidth=\dimen181
+\cmidrulewidth=\dimen182
+\belowrulesep=\dimen183
+\belowbottomsep=\dimen184
+\aboverulesep=\dimen185
+\abovetopsep=\dimen186
+\cmidrulesep=\dimen187
+\cmidrulekern=\dimen188
+\defaultaddspace=\dimen189
 \@cmidla=\count334
 \@cmidlb=\count335
-\@aboverulesep=\dimen189
-\@belowrulesep=\dimen190
+\@aboverulesep=\dimen190
+\@belowrulesep=\dimen191
 \@thisruleclass=\count336
 \@lastruleclass=\count337
-\@thisrulewidth=\dimen191
+\@thisrulewidth=\dimen192
 )
 (/Users/maxwelco/Library/TinyTeX/texmf-dist/tex/latex/tools/longtable.sty
 Package: longtable 2021-09-01 v4.17 Multi-page Table package (DPC)
@@ -557,7 +554,7 @@ Package: longtable 2021-09-01 v4.17 Multi-page Table package (DPC)
 \LTpre=\skip73
 \LTpost=\skip74
 \LTchunksize=\count338
-\LTcapwidth=\dimen192
+\LTcapwidth=\dimen193
 \LT@head=\box66
 \LT@firsthead=\box67
 \LT@foot=\box68
@@ -574,11 +571,11 @@ Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
 \multirow@colwidth=\skip75
 \multirow@cntb=\count343
 \multirow@dima=\skip76
-\bigstrutjot=\dimen193
+\bigstrutjot=\dimen194
 )
 (/Users/maxwelco/Library/TinyTeX/texmf-dist/tex/latex/wrapfig/wrapfig.sty
-\wrapoverhang=\dimen194
-\WF@size=\dimen195
+\wrapoverhang=\dimen195
+\WF@size=\dimen196
 \c@WF@wrappedlines=\count344
 \WF@box=\box71
 \WF@everypar=\toks40
@@ -612,8 +609,8 @@ Package: tabu 2019/01/11 v2.9 - flexible LaTeX tabulars (FC+tabu-fixed)
 Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \@vwid@box=\box74
 \sift@deathcycles=\count346
-\@vwid@loff=\dimen196
-\@vwid@roff=\dimen197
+\@vwid@loff=\dimen197
+\@vwid@roff=\dimen198
 )
 \c@taburow=\count347
 \tabu@nbcols=\count348
@@ -621,15 +618,15 @@ Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \tabu@Xcol=\count350
 \tabu@alloc=\count351
 \tabu@nested=\count352
-\tabu@target=\dimen198
-\tabu@spreadtarget=\dimen199
-\tabu@naturalX=\dimen256
-\tabucolX=\dimen257
-\tabu@Xsum=\dimen258
-\extrarowdepth=\dimen259
-\abovetabulinesep=\dimen260
-\belowtabulinesep=\dimen261
-\tabustrutrule=\dimen262
+\tabu@target=\dimen199
+\tabu@spreadtarget=\dimen256
+\tabu@naturalX=\dimen257
+\tabucolX=\dimen258
+\tabu@Xsum=\dimen259
+\extrarowdepth=\dimen260
+\abovetabulinesep=\dimen261
+\belowtabulinesep=\dimen262
+\tabustrutrule=\dimen263
 \tabu@thebody=\toks44
 \tabu@footnotes=\toks45
 \tabu@box=\box75
@@ -659,16 +656,16 @@ Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 \UL@hyphenbox=\box81
 \UL@skip=\skip80
 \UL@hook=\toks46
-\UL@height=\dimen263
+\UL@height=\dimen264
 \UL@pe=\count353
-\UL@pixel=\dimen264
+\UL@pixel=\dimen265
 \ULC@box=\box82
 Package: ulem 2019/11/18
-\ULdepth=\dimen265
+\ULdepth=\dimen266
 )
 (/Users/maxwelco/Library/TinyTeX/texmf-dist/tex/latex/makecell/makecell.sty
 Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
-\rotheadsize=\dimen266
+\rotheadsize=\dimen267
 \c@nlinenum=\count354
 \TeXr@lab=\toks47
 )
@@ -680,7 +677,7 @@ File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 (/Users/maxwelco/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdfte
 x.def
-File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
+File: l3backend-pdftex.def 2022-02-07 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count355
 \l__pdf_internal_box=\box83
 ) (./Manuscript.aux)
@@ -729,7 +726,7 @@ Package caption Info: hyperref package is loaded.
 Package caption Info: longtable package is loaded.
 
 (/Users/maxwelco/Library/TinyTeX/texmf-dist/tex/latex/caption/ltcaption.sty
-Package: ltcaption 2020/05/30 v1.4b longtable captions (AR)
+Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
 )
 Package caption Info: threeparttable package is loaded.
 Package caption Info: wrapfig package is loaded.
@@ -787,7 +784,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `phv' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-<./logo1.pdf, id=68, 284.06125pt x 80.3pt>
+<./logo1.pdf, id=64, 284.06125pt x 80.3pt>
 File: ./logo1.pdf Graphic file (type pdf)
 <use ./logo1.pdf>
 Package pdftex.def Info: ./logo1.pdf  used on input line 169.
@@ -849,8 +846,14 @@ LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <12> not available
 
 {/Users/maxwelco/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map} 
 <./logo1.pdf>]
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 2
+22.
+
+(/Users/maxwelco/Library/TinyTeX/texmf-dist/tex/latex/psnfss/ts1ptm.fd
+File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
+)
 LaTeX Font Info:    Font shape `OT1/phv/b/it' in size <11> not available
-(Font)              Font shape `OT1/phv/b/sl' tried instead on input line 262.
+(Font)              Font shape `OT1/phv/b/sl' tried instead on input line 263.
 
 Overfull \vbox (3.49998pt too high) has occurred while \output is active []
 
@@ -858,18 +861,15 @@ Overfull \vbox (3.49998pt too high) has occurred while \output is active []
 [2]
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <7.5> not available
-(Font)              size <7> substituted on input line 371.
+(Font)              size <7> substituted on input line 358.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <7.5> not available
-(Font)              size <7> substituted on input line 371.
+(Font)              size <7> substituted on input line 358.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <7.5> not available
-(Font)              size <7> substituted on input line 371.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+(Font)              size <7> substituted on input line 358.
 
 
 Overfull \vbox (3.49998pt too high) has occurred while \output is active []
@@ -877,12 +877,12 @@ Overfull \vbox (3.49998pt too high) has occurred while \output is active []
 
 [3]
 LaTeX Font Info:    Trying to load font information for OML+ptm on input line 4
-38.
+25.
  (/Users/maxwelco/Library/TinyTeX/texmf-dist/tex/latex/psnfss/omlptm.fd
 File: omlptm.fd 
 )
 LaTeX Font Info:    Font shape `OML/ptm/m/n' in size <12> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 438.
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 425.
 
 Overfull \vbox (3.49998pt too high) has occurred while \output is active []
 
@@ -900,9 +900,6 @@ Overfull \vbox (3.49998pt too high) has occurred while \output is active []
 
 
 [7]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 Overfull \vbox (3.49998pt too high) has occurred while \output is active []
 
 
@@ -911,9 +908,15 @@ Overfull \vbox (3.49998pt too high) has occurred while \output is active []
 
 
 [9]
-Underfull \hbox (badness 1253) in paragraph at lines 902--906
+Underfull \hbox (badness 1253) in paragraph at lines 887--891
 [][]\OT1/ptm/m/n/12 (+20) Heap, I. (2022). Internation Herbicide-Resistant Weed
  Database. Available at: []$\OT1/pcr/m/n/12 http : / / www .
+ []
+
+
+Underfull \hbox (badness 4505) in paragraph at lines 919--924
+[][]\OT1/ptm/m/n/12 (+20) Kistner, E. J., and Hatfield, J. L. (2018). Potential
+ Geographic Distribution of Palmer
  []
 
 
@@ -921,13 +924,7 @@ Overfull \vbox (3.49998pt too high) has occurred while \output is active []
 
 
 [10]
-Underfull \hbox (badness 4505) in paragraph at lines 934--939
-[][]\OT1/ptm/m/n/12 (+20) Kistner, E. J., and Hatfield, J. L. (2018). Potential
- Geographic Distribution of Palmer
- []
-
-
-Underfull \hbox (badness 1072) in paragraph at lines 1005--1010
+Underfull \hbox (badness 1072) in paragraph at lines 990--995
 \OT1/ptm/m/it/12 (+20) for Model Objects\OT1/ptm/m/n/12 (+20) . Available at: [
 ]$\OT1/pcr/m/n/12 https : / / CRAN . R-[]project . org / package = margins$[]
  []
@@ -949,48 +946,42 @@ Overfull \vbox (3.49998pt too high) has occurred while \output is active []
 
 
 [14]
-<../data analysis/figures/Figure 1.png, id=337, 505.89pt x 289.08pt>
+<../data analysis/figures/Figure 1.png, id=332, 505.89pt x 289.08pt>
 File: ../data analysis/figures/Figure 1.png Graphic file (type png)
 <use ../data analysis/figures/Figure 1.png>
 Package pdftex.def Info: ../data analysis/figures/Figure 1.png  used on input l
-ine 1282.
+ine 1264.
 (pdftex.def)             Requested size: 455.25046pt x 256.08942pt.
-<../data analysis/weather/Figure 2.png, id=338, 526.8483pt x 325.4559pt>
+<../data analysis/weather/Figure 2.png, id=333, 526.8483pt x 325.4559pt>
 File: ../data analysis/weather/Figure 2.png Graphic file (type png)
 <use ../data analysis/weather/Figure 2.png>
 Package pdftex.def Info: ../data analysis/weather/Figure 2.png  used on input l
-ine 1291.
+ine 1273.
 (pdftex.def)             Requested size: 455.24321pt x 284.53981pt.
-<../data analysis/figures/Figure 3.png, id=339, 650.43pt x 289.08pt>
+<../data analysis/figures/Figure 3.png, id=334, 650.43pt x 289.08pt>
 File: ../data analysis/figures/Figure 3.png Graphic file (type png)
 <use ../data analysis/figures/Figure 3.png>
 Package pdftex.def Info: ../data analysis/figures/Figure 3.png  used on input l
-ine 1300.
+ine 1282.
 (pdftex.def)             Requested size: 426.80394pt x 199.16986pt.
-<../data analysis/figures/Figure 4.png, id=340, 433.62pt x 216.81pt>
+<../data analysis/figures/Figure 4.png, id=335, 433.62pt x 216.81pt>
 File: ../data analysis/figures/Figure 4.png Graphic file (type png)
 <use ../data analysis/figures/Figure 4.png>
 Package pdftex.def Info: ../data analysis/figures/Figure 4.png  used on input l
-ine 1309.
+ine 1291.
 (pdftex.def)             Requested size: 426.81056pt x 256.10484pt.
-<../data analysis/figures/Figure 5.png, id=341, 433.62pt x 433.62pt>
+<../data analysis/figures/Figure 5.png, id=336, 433.62pt x 433.62pt>
 File: ../data analysis/figures/Figure 5.png Graphic file (type png)
 <use ../data analysis/figures/Figure 5.png>
 Package pdftex.def Info: ../data analysis/figures/Figure 5.png  used on input l
-ine 1318.
+ine 1300.
 (pdftex.def)             Requested size: 426.81056pt x 426.81056pt.
-<../data analysis/figures/Figure 6.png, id=342, 722.7pt x 289.08pt>
+<../data analysis/figures/Figure 6.png, id=337, 722.7pt x 289.08pt>
 File: ../data analysis/figures/Figure 6.png Graphic file (type png)
 <use ../data analysis/figures/Figure 6.png>
 Package pdftex.def Info: ../data analysis/figures/Figure 6.png  used on input l
-ine 1327.
+ine 1309.
 (pdftex.def)             Requested size: 483.69922pt x 199.16986pt.
-<../data analysis/figures/Figure 7.png, id=343, 505.89pt x 325.4559pt>
-File: ../data analysis/figures/Figure 7.png Graphic file (type png)
-<use ../data analysis/figures/Figure 7.png>
-Package pdftex.def Info: ../data analysis/figures/Figure 7.png  used on input l
-ine 1336.
-(pdftex.def)             Requested size: 426.7973pt x 256.08434pt.
 
 
 Package caption Warning: Unused \captionsetup[sub] on input line 17.
@@ -1020,31 +1011,30 @@ Overfull \vbox (3.49998pt too high) has occurred while \output is active []
 
 
 [18 <../data analysis/figures/Figure 5.png>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 Overfull \vbox (3.49998pt too high) has occurred while \output is active []
 
 
-[19 <../data analysis/figures/Figure 6.png> <../data analysis/figures/Figure 7.
-png>] (./Manuscript.aux)
+[19 <../data analysis/figures/Figure 6.png>] (./Manuscript.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.5pt have occurred.
 
 Package rerunfilecheck Info: File `Manuscript.out' has not changed.
-(rerunfilecheck)             Checksum: 6C59BAB843EB51ACE9D493423F4D0F24;2439.
+(rerunfilecheck)             Checksum: 5C7C260A53D1D44BF962F0EF0BA9DC03;2325.
  ) 
 Here is how much of TeX's memory you used:
- 18461 strings out of 480227
- 301474 string characters out of 5894149
- 642583 words of memory out of 5000000
- 35498 multiletter control sequences out of 15000+600000
- 530804 words of font info for 346 fonts, out of 8000000 for 9000
+ 18531 strings out of 480216
+ 302341 string characters out of 5893889
+ 641308 words of memory out of 5000000
+ 35574 multiletter control sequences out of 15000+600000
+ 531312 words of font info for 352 fonts, out of 8000000 for 9000
  20 hyphenation exceptions out of 8191
- 85i,14n,131p,1871b,401s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{section*.18} has been referenced but does not exi
+ 85i,14n,131p,1899b,400s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{section*.17} has been referenced but does not exi
 st, replaced by a fixed one
-
-pdfTeX warning (dest): name{section*.17} has been referenced but does not exist
-, replaced by a fixed one
 
 pdfTeX warning (dest): name{section*.16} has been referenced but does not exist
 , replaced by a fixed one
@@ -1061,7 +1051,10 @@ pdfTeX warning (dest): name{section*.13} has been referenced but does not exist
 pdfTeX warning (dest): name{section*.12} has been referenced but does not exist
 , replaced by a fixed one
 
-pdfTeX warning (dest): name{section*.7} has been referenced but does not exist,
+pdfTeX warning (dest): name{section*.11} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{section*.6} has been referenced but does not exist,
  replaced by a fixed one
 
 pdfTeX warning (dest): name{section*.2} has been referenced but does not exist,
@@ -1083,10 +1076,10 @@ lvetic/uhvro8a.pfb></Users/maxwelco/Library/TinyTeX/texmf-dist/fonts/type1/urw/
 times/utmb8a.pfb></Users/maxwelco/Library/TinyTeX/texmf-dist/fonts/type1/urw/ti
 mes/utmr8a.pfb></Users/maxwelco/Library/TinyTeX/texmf-dist/fonts/type1/urw/time
 s/utmri8a.pfb>
-Output written on Manuscript.pdf (19 pages, 6536154 bytes).
+Output written on Manuscript.pdf (19 pages, 1969479 bytes).
 PDF statistics:
- 453 PDF objects out of 1000 (max. 8388607)
- 397 compressed objects within 4 object streams
- 140 named destinations out of 1000 (max. 500000)
- 99497 words of extra memory for PDF output out of 106986 (max. 10000000)
+ 445 PDF objects out of 1000 (max. 8388607)
+ 390 compressed objects within 4 object streams
+ 137 named destinations out of 1000 (max. 500000)
+ 101532 words of extra memory for PDF output out of 106986 (max. 10000000)
 
